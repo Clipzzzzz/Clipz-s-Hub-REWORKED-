@@ -1,7 +1,9 @@
 local games = {
-	[1] = {"11345129632", "Role THE Dice"}
+	[1] = {"11345129632", "🎲ROLL The DICE!"}
 }
 
-if game.PlaceId == games[1][1] then
-	loadstring(game:HttpGet("", true))()
+for i,v in games do
+	if game.PlaceId == v[1] then
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Clipzzzzz/Project-Clipz/main/"..v[2], true))()
+	end
 end
