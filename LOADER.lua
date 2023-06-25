@@ -3,7 +3,7 @@ local games = {
 }
 
 for i,v in games do
-	if game.PlaceId == v[1] then
+	if game.PlaceId == tostring(v[1]) then
 		local vers = tostring(v[2])
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/Clipzzzzz/Project-Clipz/main/"..vers, true))()
 		print("loadstring success")
