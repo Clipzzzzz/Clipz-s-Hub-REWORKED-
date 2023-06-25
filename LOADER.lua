@@ -13,8 +13,3 @@ end
 
 warn("[Project Clipz]: Loaded Sucessfully")
 warn("[Project Clipz]: The following are available games for this hub: ")
-
-
-for i,v in games do
-	warn(tostring(v[2]))
-end
