@@ -6,7 +6,7 @@ local games = {
 
 for i, v in pairs(games) do
 	if i == game.PlaceId or i == game.GameId then
-		loadstring(game:HttpGet(project .. v))()
+		loadstring(game:HttpGet(project..v, true))()
 	end
 end
 
