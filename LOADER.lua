@@ -7,3 +7,11 @@ for i,v in games do
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/Clipzzzzz/Project-Clipz/main/"..v[2], true))()
 	end
 end
+
+warn("[Project Clipz]: Loaded Sucessfully")
+warn("[Project Clipz]: The following are available games for this hub: ")
+
+
+for i,v in games do
+	warn(tostring(v[2]))
+end
