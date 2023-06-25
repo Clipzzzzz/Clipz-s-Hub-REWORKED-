@@ -1,6 +1,8 @@
 local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
+
 local COREGUI = game:GetService("CoreGui")
 local UIS = game:GetService('UserInputService')
+
 
 local Window = Rayfield:CreateWindow({
 	Name = "Project Clipz",
@@ -21,20 +23,12 @@ local Window = Rayfield:CreateWindow({
 	}
 })
 
-Rayfield:Notify("Project Clipz Loading!", "", "13858115678") -- Notfication -- Title, Content, Image
+Rayfield:Notify("Project Clipz Loading!") -- Notfication -- Title, Content, Image
 
-local Tab = Window:CreateTab("Featured", "10002492915") -- Title, Image
-local Tab2 = Window:CreateTab("Upgrades", "2245714200") -- Title, Image
+local Tab = Window:CreateTab("Featured") -- Title, Image
+local Tab2 = Window:CreateTab("Upgrades") -- Title, Image
 
 local Section = Tab:CreateSection("Automatic")
-
--- local Button = Tab:CreateButton({
---	Name = "Button Example",
---	Callback = function()
--- The function that takes place when the button is pressed
---	end,
--- })
-
 
 
 --[[         BELOW IS THE DRAG FUNCTION.            ]]
