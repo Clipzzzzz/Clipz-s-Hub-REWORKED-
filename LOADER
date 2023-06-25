@@ -1,0 +1,7 @@
+local games = {
+	[1] = {"11345129632", "Role THE Dice"}
+}
+
+if game.PlaceId == games[1][1] then
+	loadstring(game:HttpGet("", true))()
+end
