@@ -1,4 +1,4 @@
-local project = "https://raw.githubusercontent.com/Clipzzzzz/Project-Clipz/main/LOADER.lua"
+local project = "https://raw.githubusercontent.com/Clipzzzzz/Project-Clipz/main/"
 
 local games = {
 	[11345129632] = "🎲ROLL%20The%20DICE!",
