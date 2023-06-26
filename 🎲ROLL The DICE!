@@ -35,6 +35,8 @@ Tab:AddToggle({
 			if Value ~= false then
 			game:GetService("ReplicatedStorage").RollDice:FireServer()
 			game:GetService("RunService").RenderStepped:Wait()
+			else
+				Value = false
 			end
 		end
 	end    
