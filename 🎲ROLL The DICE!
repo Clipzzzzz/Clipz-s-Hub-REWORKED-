@@ -27,6 +27,24 @@ local Tab2 = Window:MakeTab({
 	PremiumOnly = false
 })
 
+Tab:AddToggle({
+	Name = "Auto Roll",
+	Default = false,
+	Callback = function(Value)
+		while Value == true do
+			wait(0.01)
+			game:GetService("ReplicatedStorage").RollDice:FireServer()
+		end
+	end    
+})
+
+--[[
+Name = <string> - The name of the toggle.
+Default = <bool> - The default value of the toggle.
+Callback = <function> - The function of the toggle.
+]]
+
+
 --[[
 Name = <string> - The name of the tab.
 Icon = <string> - The icon of the tab.
