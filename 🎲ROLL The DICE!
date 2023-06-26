@@ -27,7 +27,7 @@ local Tab2 = Window:MakeTab({
 	PremiumOnly = false
 })
 
-Tab:AddToggle({
+--[[Tab:AddToggle({
 	Name = "Auto Roll",
 	Default = false,
 	Callback = function(Value)
@@ -42,7 +42,22 @@ Tab:AddToggle({
 			Value = false
 		end
 	end    
+	
+})]]
+
+Tab:AddToggle({
+	Name = "Auto Roll",
+	Default = false,
+	Save = true,
+	Flag = "toggle"
 })
+
+while OrionLib.Flags["toggle"].Value == true do
+	if OrionLib.Flags["toggle"].Value == false then return end
+	game:GetService("ReplicatedStorage").RollDice:FireServer()
+	game:GetService("RunService").RenderStepped:Wait()
+end
+
 
 --[[
 Name = <string> - The name of the toggle.
