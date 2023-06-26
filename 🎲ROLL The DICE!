@@ -1,123 +1,123 @@
-local Library = loadstring(game:HttpGet('https://raw.githubusercontent.com/Rain-Design/PPHUD/main/Library.lua'))()
-local Flags = Library.Flags
+local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
 
-local Window = Library:Window({
-   Text = "Baseplate"
+local Window = Rayfield:CreateWindow({
+	Name = "Rayfield Example Window",
+	LoadingTitle = "Rayfield Interface Suite",
+	LoadingSubtitle = "by Sirius",
+	ConfigurationSaving = {
+		Enabled = true,
+		FolderName = "Rayfield Interface Suite",
+		FileName = "Big Hub"
+	},
+	KeySystem = false, -- Set this to true to use their key system
+	KeySettings = {
+		Title = "Sirius Hub",
+		Subtitle = "Key System",
+		Note = "Join the discord (discord.gg/sirius)",
+		SaveKey = true,
+		Key = "ABCDEF"
+	}
 })
 
-local Tab = Window:Tab({
-   Text = "Aiming"
+Rayfield:Notify("Title Example", "Content/Description Example", 4483362458) -- Notfication -- Title, Content, Image
+
+local Tab = Window:CreateTab("Tab Example", 4483362458) -- Title, Image
+
+local Section = Tab:CreateSection("Section Example")
+
+local Button = Tab:CreateButton({
+	Name = "Button Example",
+	Callback = function()
+		-- The function that takes place when the button is pressed
+	end,
 })
 
-local Tab2 = Window:Tab({
-   Text = "Visual"
+local Toggle = Tab:CreateToggle({
+	Name = "Toggle Example",
+	CurrentValue = false,
+	Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Callback = function(Value)
+		-- The function that takes place when the toggle is pressed
+    		-- The variable (Value) is a boolean on whether the toggle is true or false
+	end,
 })
 
-local Section = Tab:Section({
-   Text = "Aiming"
+local Slider = Tab:CreateSlider({
+	Name = "Slider Example",
+	Range = {0, 100},
+	Increment = 10,
+	Suffix = "Bananas",
+	CurrentValue = 10,
+	Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Callback = function(Value)
+		-- The function that takes place when the slider changes
+    		-- The variable (Value) is a number which correlates to the value the slider is currently at
+	end,
 })
 
-local Section2 = Tab:Section({
-   Text = "Anti-Aim"
+local Label = Tab:CreateLabel("Label Example")
+
+local Paragraph = Tab:CreateParagraph({Title = "Paragraph Example", Content = "Paragraph Example"})
+
+local Input = Tab:CreateInput({
+	Name = "Input Example",
+	PlaceholderText = "Input Placeholder",
+	RemoveTextAfterFocusLost = false,
+	Callback = function(Text)
+		-- The function that takes place when the input is changed
+    		-- The variable (Text) is a string for the value in the text box
+	end,
 })
 
-local Section3 = Tab:Section({
-   Text = "Ragebot",
-   Side = "Right"
+local Keybind = Tab:CreateKeybind({
+	Name = "Keybind Example",
+	CurrentKeybind = "Q",
+	HoldToInteract = false,
+	Flag = "Keybind1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Callback = function(Keybind)
+		-- The function that takes place when the keybind is pressed
+    		-- The variable (Keybind) is a boolean for whether the keybind is being held or not (HoldToInteract needs to be true)
+	end,
 })
 
-Section:Check({
-   Text = "Aimbot",
-   Flag = "Aimbot"
+local Dropdown = Tab:CreateDropdown({
+	Name = "Dropdown Example",
+	Options = {"Option 1","Option 2"},
+	CurrentOption = "Option 1",
+	Flag = "Dropdown1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Callback = function(Option)
+	  	  -- The function that takes place when the selected option is changed
+    	  -- The variable (Option) is a string for the value that the dropdown was changed to
+	end,
 })
 
-Section:Check({
-   Text = "Silent-Aim",
-   Callback = function(bool)
-       warn(bool)
-   end
+local Button = Tab:CreateButton({
+	Name = "Destroy UI",
+	Callback = function()
+		Rayfield:Destroy()
+	end,
 })
 
-Section:Dropdown({
-   Text = "Body Part",
-   List = {"Head", "Torso", "Random"},
-   Callback = function(opt)
-       warn(opt)
-   end
-})
+-- Extras
 
-Section:Slider({
-   Text = "Hit Chance",
-   Minimum = 0,
-   Default = 60,
-   Maximum = 100,
-   Postfix = "%",
-   Callback = function(n)
-       warn(n)
-   end
-})
+-- getgenv().SecureMode = true -- Only Set To True If Games Are Detecting/Crashing The UI
 
-Section:Button({
-   Text = "Spawn",
-   Callback = function()
-       warn("Settings Reseted.")
-   end
-})
+-- Rayfield:Destroy() -- Destroys UI
 
-Section2:Check({
-   Text = "Spin"
-})
+-- Rayfield:LoadConfiguration() -- Enables Configuration Saving
 
-Section2:Slider({
-   Text = "Pitch Offset",
-   Minimum = 100,
-   Default = 150,
-   Maximum = 500,
-   Callback = function(n)
-       warn(n)
-   end
-})
+-- Section:Set("Section Example") -- Use To Update Section Text
 
-Section2:Slider({
-   Text = "Yaw Offset",
-   Minimum = 100,
-   Default = 150,
-   Maximum = 500,
-   Callback = function(n)
-       warn(n)
-   end
-})
+-- Button:Set("Button Example") -- Use To Update Button Text
 
-Section2:Button({
-   Text = "Resolve Positions"
-})
+-- Toggle:Set(false) -- Use To Update Toggle
 
-Section3:Check({
-   Text = "Auto-Wall",
-   Callback = function(bool)
-       warn(bool)
-   end
-})
+-- Slider:Set(10) -- Use To Update Slider Value
 
-Section3:Check({
-   Text = "Trigger Bot"
-})
+-- Label:Set("Label Example") -- Use To Update Label Text
 
-Section3:Check({
-   Text = "Insta-Kill"
-})
+-- Paragraph:Set({Title = "Paragraph Example", Content = "Paragraph Example"}) -- Use To Update Paragraph Text
 
-Section3:Dropdown({
-   Text = "Hitscan Directions",
-   List = {"Left", "Right", "Up", "Down", "All"},
-   Callback = function(opt)
-       warn(opt)
-   end
-})
+-- Keybind:Set("RightCtrl") -- Keybind (string) -- Use To Update Keybind
 
-Section3:Label({
-   Text = "Status: Undetected",
-   Color = Color3.fromRGB(100, 190, 31)
-})
-
-Tab:Select()
+-- Dropdown:Set("Option 2") -- The new option value -- Use To Update/Set New Dropdowns
