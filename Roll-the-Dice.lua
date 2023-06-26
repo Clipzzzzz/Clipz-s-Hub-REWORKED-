@@ -57,7 +57,7 @@ Time = <number> - The duration of the notfication.
 
 local orion = COREGUI:WaitForChild("Orion")
 
-local frame = orion.Frame
+local frame = orion:FindFirstChild("Frame")
 local dragToggle = nil
 local dragSpeed = 0.25
 local dragStart = nil
