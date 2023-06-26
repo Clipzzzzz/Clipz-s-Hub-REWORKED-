@@ -2,11 +2,7 @@ local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shl
 local COREGUI = game:GetService("CoreGui")
 local UIS = game:GetService('UserInputService')
 
-function CloseWindow()
-	COREGUI:FindFirstChild("Orion"):Destroy()
-end
-
-local Window = OrionLib:MakeWindow({Name = "Project Clipz", HidePremium = false, SaveConfig = true, ConfigFolder = "ProjectClipz", IntroEnabled = true, IntroText = "Project Clipz | ROLL the DICE", IntroIcon = "http://www.roblox.com/asset/?id=13865945492", Icon = "http://www.roblox.com/asset/?id=13858114914", CloseCallback = CloseWindow()})
+local Window = OrionLib:MakeWindow({Name = "Project Clipz", HidePremium = false, SaveConfig = true, ConfigFolder = "ProjectClipz", IntroEnabled = true, IntroText = "Project Clipz | ROLL the DICE", IntroIcon = "http://www.roblox.com/asset/?id=13865945492", Icon = "http://www.roblox.com/asset/?id=13858114914"})
 
 --[[
 Name = <string> - The name of the UI.
