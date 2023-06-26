@@ -31,9 +31,9 @@ Tab:AddToggle({
 	Name = "Auto Roll",
 	Default = false,
 	Callback = function(Value)
-		while Value == true do
-			wait(0.01)
+		while Value do
 			game:GetService("ReplicatedStorage").RollDice:FireServer()
+			game:GetService("RunService").RenderStepped:Wait()
 		end
 	end    
 })
