@@ -1,5 +1,6 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-
+local COREGUI = game:GetService("CoreGui")
+local UIS = game:GetService('UserInputService')
 local Window = OrionLib:MakeWindow({Name = "Project Clipz", HidePremium = false, SaveConfig = true, ConfigFolder = "ProjectClipz", IntroEnabled = true, IntroText = "Project Clipz | ROLL the DICE", IntroIcon = "http://www.roblox.com/asset/?id=13865945492", Icon = "http://www.roblox.com/asset/?id=13858114914"})
 
 --[[
@@ -53,5 +54,42 @@ Content = <string> - The content of the notification.
 Image = <string> - The icon of the notification.
 Time = <number> - The duration of the notfication.
 ]]
+
+local orion = COREGUI:WaitForChild("Orion")
+
+local frame = orion.Frame
+local dragToggle = nil
+local dragSpeed = 0.25
+local dragStart = nil
+local startPos = nil
+
+local function updateInput(input)
+	local delta = input.Position - dragStart
+	local position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X,
+		startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+	game:GetService('TweenService'):Create(frame, TweenInfo.new(dragSpeed), {Position = position}):Play()
+end
+
+frame.InputBegan:Connect(function(input)
+	if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then 
+		dragToggle = true
+		dragStart = input.Position
+		startPos = frame.Position
+		input.Changed:Connect(function()
+			if input.UserInputState == Enum.UserInputState.End then
+				dragToggle = false
+			end
+		end)
+	end
+end)
+
+UIS.InputChanged:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+		if dragToggle then
+			updateInput(input)
+		end
+	end
+end)
+
 
 OrionLib:Init()
