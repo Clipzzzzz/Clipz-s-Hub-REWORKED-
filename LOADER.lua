@@ -1,7 +1,7 @@
 local project = "https://raw.githubusercontent.com/Clipzzzzz/Project-Clipz/main/"
 
 local games = {
-	[11345129632] = "Roll-the-Dice"
+	[11345129632] = "Roll-the-Dice.lua"
 }
 
 for i, v in pairs(games) do
