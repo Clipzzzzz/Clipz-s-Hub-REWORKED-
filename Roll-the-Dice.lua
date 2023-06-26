@@ -16,13 +16,13 @@ CloseCallback = <function> - Function to execute when the window is closed.
 
 local Tab = Window:MakeTab({
 	Name = "Featured",
-	Icon = "rbxassetid://10002492915",
+	Icon = "http://www.roblox.com/asset/?id=10002492897",
 	PremiumOnly = false
 })
 
 local Tab2 = Window:MakeTab({
 	Name = "Upgrades",
-	Icon = "rbxassetid://2245714200",
+	Icon = "http://www.roblox.com/asset/?id=2245714171",
 	PremiumOnly = false
 })
 
@@ -32,9 +32,9 @@ Icon = <string> - The icon of the tab.
 PremiumOnly = <bool> - Makes the tab accessible to Sirus Premium users only.
 ]]
 
-local Section = Tab:AddSection({
+--[[ local Section = Tab:AddSection({
 	Name = "Section"
-})
+}) ]]
 
 --[[
 Name = <string> - The name of the section.
@@ -42,7 +42,7 @@ Name = <string> - The name of the section.
 
 OrionLib:MakeNotification({
 	Name = "Project Clipz",
-	Content = "Project Clipz is loading, thank you for using the hub.",
+	Content = "Thank you for using Project Clipz",
 	Image = "rbxassetid://13865945535",
 	Time = 5
 })
@@ -53,3 +53,5 @@ Content = <string> - The content of the notification.
 Image = <string> - The icon of the notification.
 Time = <number> - The duration of the notfication.
 ]]
+
+OrionLib:Init()
