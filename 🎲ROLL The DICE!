@@ -23,7 +23,7 @@ local Window = Rayfield:CreateWindow({
 	}
 })
 
-Rayfield:Notify("Project Clipz Loading!") -- Notfication -- Title, Content, Image
+Rayfield:Notify("Project Clipz Loading!", "yh") -- Notfication -- Title, Content, Image
 
 local Tab = Window:CreateTab("Featured") -- Title, Image
 local Tab2 = Window:CreateTab("Upgrades") -- Title, Image
