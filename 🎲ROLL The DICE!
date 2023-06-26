@@ -47,6 +47,7 @@ Tab:AddToggle({
 		coroutine.wrap(function()
 			while Value == true do
 				game.Players.LocalPlayer.Playerstats.CanRoll.Value = true
+				game:GetService("RunService").RenderStepped:Wait()
 			end	
 		end)() 
 	end
