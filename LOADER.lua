@@ -1,5 +1,5 @@
 local games = {
-	[1] = {11345129632, "🎲ROLL%20The%20DICE!", "🎲ROLL The DICE!"}
+	[1] = {11345129632, "🎲ROLL%20The%20DICE!.lua", "🎲ROLL The DICE!"}
 }
 
 for i,v in games do
