@@ -31,13 +31,15 @@ Tab:AddToggle({
 	Name = "Auto Roll",
 	Default = false,
 	Callback = function(Value)
-		while Value do
-			if Value ~= false then
+		if Value == false then
+			Value = true
+			while Value == true do
+				if Value == false then return end
 			game:GetService("ReplicatedStorage").RollDice:FireServer()
 			game:GetService("RunService").RenderStepped:Wait()
-			else
-				Value = false
 			end
+		else
+			Value = false
 		end
 	end    
 })
