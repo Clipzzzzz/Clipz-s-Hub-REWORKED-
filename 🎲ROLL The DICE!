@@ -31,12 +31,18 @@ Tab:AddToggle({
 	Name = "Auto Roll",
 	Default = false,
 	Callback = function(Value)
+		if Value == false then
+			Value = true
+			
 		coroutine.wrap(function()
 			while Value == true do
 				game:GetService("ReplicatedStorage").RollDice:FireServer()
 				game:GetService("RunService").RenderStepped:Wait()
 			end
 		end)() 
+		else
+			Value = false
+		end
 	end    
 })
 
