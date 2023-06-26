@@ -33,10 +33,12 @@ Tab:AddToggle({
 	Callback = function(Value)
 		if Value == false then
 			Value = true
+			
 			while Value == true do
-			game:GetService("ReplicatedStorage").RollDice:FireServer()
-			game:GetService("RunService").RenderStepped:Wait()
+				game:GetService("ReplicatedStorage").RollDice:FireServer()
+				game:GetService("RunService").RenderStepped:Wait()
 			end
+
 		else
 			Value = false
 		end
