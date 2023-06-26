@@ -1,123 +1,63 @@
-local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
 
-local Window = Rayfield:CreateWindow({
-	Name = "Rayfield Example Window",
-	LoadingTitle = "Rayfield Interface Suite",
-	LoadingSubtitle = "by Sirius",
-	ConfigurationSaving = {
-		Enabled = true,
-		FolderName = "Rayfield Interface Suite",
-		FileName = "Big Hub"
-	},
-	KeySystem = false, -- Set this to true to use their key system
-	KeySettings = {
-		Title = "Sirius Hub",
-		Subtitle = "Key System",
-		Note = "Join the discord (discord.gg/sirius)",
-		SaveKey = true,
-		Key = "ABCDEF"
-	}
-})
+-- init
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/GreenDeno/Venyx-UI-Library/main/source.lua"))()
+local venyx = library.new("Venyx", 5013109572)
 
-Rayfield:Notify("Title Example", "Content/Description Example", 4483362458) -- Notfication -- Title, Content, Image
+-- themes
+local themes = {
+	Background = Color3.fromRGB(24, 24, 24),
+	Glow = Color3.fromRGB(0, 0, 0),
+	Accent = Color3.fromRGB(10, 10, 10),
+	LightContrast = Color3.fromRGB(20, 20, 20),
+	DarkContrast = Color3.fromRGB(14, 14, 14),  
+	TextColor = Color3.fromRGB(255, 255, 255)
+}
 
-local Tab = Window:CreateTab("Tab Example", 4483362458) -- Title, Image
+-- first page
+local page = venyx:addPage("Test", 5012544693)
+local section1 = page:addSection("Section 1")
+local section2 = page:addSection("Section 2")
 
-local Section = Tab:CreateSection("Section Example")
+section1:addToggle("Toggle", nil, function(value)
+	print("Toggled", value)
+end)
+section1:addButton("Button", function()
+	print("Clicked")
+end)
+section1:addTextbox("Notification", "Default", function(value, focusLost)
+	print("Input", value)
 
-local Button = Tab:CreateButton({
-	Name = "Button Example",
-	Callback = function()
-		-- The function that takes place when the button is pressed
-	end,
-})
+	if focusLost then
+		venyx:Notify("Title", value)
+	end
+end)
 
-local Toggle = Tab:CreateToggle({
-	Name = "Toggle Example",
-	CurrentValue = false,
-	Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-	Callback = function(Value)
-		-- The function that takes place when the toggle is pressed
-    		-- The variable (Value) is a boolean on whether the toggle is true or false
-	end,
-})
+section2:addKeybind("Toggle Keybind", Enum.KeyCode.One, function()
+	print("Activated Keybind")
+	venyx:toggle()
+end, function()
+	print("Changed Keybind")
+end)
+section2:addColorPicker("ColorPicker", Color3.fromRGB(50, 50, 50))
+section2:addColorPicker("ColorPicker2")
+section2:addSlider("Slider", 0, -100, 100, function(value)
+	print("Dragged", value)
+end)
+section2:addDropdown("Dropdown", {"Hello", "World", "Hello World", "Word", 1, 2, 3})
+section2:addDropdown("Dropdown", {"Hello", "World", "Hello World", "Word", 1, 2, 3}, function(text)
+	print("Selected", text)
+end)
+section2:addButton("Button")
 
-local Slider = Tab:CreateSlider({
-	Name = "Slider Example",
-	Range = {0, 100},
-	Increment = 10,
-	Suffix = "Bananas",
-	CurrentValue = 10,
-	Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-	Callback = function(Value)
-		-- The function that takes place when the slider changes
-    		-- The variable (Value) is a number which correlates to the value the slider is currently at
-	end,
-})
+-- second page
+local theme = venyx:addPage("Theme", 5012544693)
+local colors = theme:addSection("Colors")
 
-local Label = Tab:CreateLabel("Label Example")
+for theme, color in pairs(themes) do -- all in one theme changer, i know, im cool
+	colors:addColorPicker(theme, color, function(color3)
+		venyx:setTheme(theme, color3)
+	end)
+end
 
-local Paragraph = Tab:CreateParagraph({Title = "Paragraph Example", Content = "Paragraph Example"})
-
-local Input = Tab:CreateInput({
-	Name = "Input Example",
-	PlaceholderText = "Input Placeholder",
-	RemoveTextAfterFocusLost = false,
-	Callback = function(Text)
-		-- The function that takes place when the input is changed
-    		-- The variable (Text) is a string for the value in the text box
-	end,
-})
-
-local Keybind = Tab:CreateKeybind({
-	Name = "Keybind Example",
-	CurrentKeybind = "Q",
-	HoldToInteract = false,
-	Flag = "Keybind1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-	Callback = function(Keybind)
-		-- The function that takes place when the keybind is pressed
-    		-- The variable (Keybind) is a boolean for whether the keybind is being held or not (HoldToInteract needs to be true)
-	end,
-})
-
-local Dropdown = Tab:CreateDropdown({
-	Name = "Dropdown Example",
-	Options = {"Option 1","Option 2"},
-	CurrentOption = "Option 1",
-	Flag = "Dropdown1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-	Callback = function(Option)
-	  	  -- The function that takes place when the selected option is changed
-    	  -- The variable (Option) is a string for the value that the dropdown was changed to
-	end,
-})
-
-local Button = Tab:CreateButton({
-	Name = "Destroy UI",
-	Callback = function()
-		Rayfield:Destroy()
-	end,
-})
-
--- Extras
-
--- getgenv().SecureMode = true -- Only Set To True If Games Are Detecting/Crashing The UI
-
--- Rayfield:Destroy() -- Destroys UI
-
--- Rayfield:LoadConfiguration() -- Enables Configuration Saving
-
--- Section:Set("Section Example") -- Use To Update Section Text
-
--- Button:Set("Button Example") -- Use To Update Button Text
-
--- Toggle:Set(false) -- Use To Update Toggle
-
--- Slider:Set(10) -- Use To Update Slider Value
-
--- Label:Set("Label Example") -- Use To Update Label Text
-
--- Paragraph:Set({Title = "Paragraph Example", Content = "Paragraph Example"}) -- Use To Update Paragraph Text
-
--- Keybind:Set("RightCtrl") -- Keybind (string) -- Use To Update Keybind
-
--- Dropdown:Set("Option 2") -- The new option value -- Use To Update/Set New Dropdowns
+-- load
+venyx:SelectPage(venyx.pages[1], true)
