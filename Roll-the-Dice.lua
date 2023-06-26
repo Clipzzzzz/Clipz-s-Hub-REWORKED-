@@ -1,6 +1,6 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 
-local Window = OrionLib:MakeWindow({Name = "Project Clipz", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest", IntroEnabled = true, IntroText = "Project Clipz | ROLL the DICE", IntroIcon = "rbxassetid://13865945535", Icon = "rbxassetid://13858115678"})
+local Window = OrionLib:MakeWindow({Name = "Project Clipz", HidePremium = false, SaveConfig = true, ConfigFolder = "ProjectClipz", IntroEnabled = true, IntroText = "Project Clipz | ROLL the DICE", IntroIcon = "http://www.roblox.com/asset/?id=13865945535", Icon = "http://www.roblox.com/asset/?id=13858115678"})
 
 --[[
 Name = <string> - The name of the UI.
