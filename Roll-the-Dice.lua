@@ -1,6 +1,14 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 
-local Window = OrionLib:MakeWindow({Name = "Title of the library", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+local COREGUI = game:GetService("CoreGui")
+local UIS = game:GetService('UserInputService')
+
+function CloseWindow()
+	COREGUI:WaitForChild("Orion"):Destroy()
+end
+
+
+local Window = OrionLib:MakeWindow({Name = "Project Clipz", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest", IntroEnabled = true, IntroText = "Project Clipz | ROLL the DICE", IntroIcon = "rbxassetid://13865945535", Icon = "rbxassetid://13858115678", CloseCallback = CloseWindow()})
 
 --[[
 Name = <string> - The name of the UI.
@@ -15,8 +23,14 @@ CloseCallback = <function> - Function to execute when the window is closed.
 ]]
 
 local Tab = Window:MakeTab({
-	Name = "Tab 1",
-	Icon = "rbxassetid://4483345998",
+	Name = "Featured",
+	Icon = "rbxassetid://10002492915",
+	PremiumOnly = false
+})
+
+local Tab2 = Window:MakeTab({
+	Name = "Upgrades",
+	Icon = "rbxassetid://2245714200",
 	PremiumOnly = false
 })
 
@@ -35,9 +49,9 @@ Name = <string> - The name of the section.
 ]]
 
 OrionLib:MakeNotification({
-	Name = "Title!",
-	Content = "Notification content... what will it say??",
-	Image = "rbxassetid://4483345998",
+	Name = "Project Clipz",
+	Content = "Project Clipz is loading, thank you for using the hub.",
+	Image = "rbxassetid://13865945535",
 	Time = 5
 })
 
