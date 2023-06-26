@@ -43,7 +43,7 @@ Name = <string> - The name of the section.
 OrionLib:MakeNotification({
 	Name = "Project Clipz",
 	Content = "Thank you for using Project Clipz",
-	Image = "rbxassetid://13865945535",
+	Image = "http://www.roblox.com/asset/?id=13858114914",
 	Time = 5
 })
 
