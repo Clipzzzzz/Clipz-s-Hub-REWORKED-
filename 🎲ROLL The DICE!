@@ -31,16 +31,9 @@ Tab:AddToggle({
 	Name = "Auto Roll",
 	Default = false,
 	Callback = function(Value)
-		if Value == false then
-			Value = true
-			
 			while Value == true do
 				game:GetService("ReplicatedStorage").RollDice:FireServer()
 				game:GetService("RunService").RenderStepped:Wait()
-			end
-
-		else
-			Value = false
 		end
 	end    
 })
@@ -49,15 +42,8 @@ Tab:AddToggle({
 	Name = "No Cooldown",
 	Default = false,
 	Callback = function(Value)
-		if Value == false then
-			Value = true
-
 			while Value == true do
 				game.Players.LocalPlayer.Playerstats.CanRoll.Value = true
-			end
-
-		else
-			Value = false
 		end
 	end    
 })
