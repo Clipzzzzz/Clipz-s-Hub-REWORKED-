@@ -41,6 +41,7 @@ Tab:AddToggle({
 			coroutine.wrap(function()
 			while autoroll == true do
 				game:GetService("ReplicatedStorage").RollDice:FireServer()
+wait()
 				end
 			end)()
 
