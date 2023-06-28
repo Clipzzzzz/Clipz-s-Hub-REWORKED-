@@ -38,10 +38,11 @@ Tab:AddToggle({
 		if autoroll == false then
 			autoroll = true
 			
+			coroutine.wrap(function()
 			while autoroll == true do
 				game:GetService("ReplicatedStorage").RollDice:FireServer()
-				game:GetService("RunService").RenderStepped:Wait()
-			end
+				end
+			end)()
 
 		else
 			autoroll = false
