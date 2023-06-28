@@ -1,31 +1,140 @@
-local CoastingLibrary = loadstring(game:HttpGet("https://pastebin.com/raw/3gQQtaKX"))()
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local COREGUI = game:GetService("CoreGui")
+local UIS = game:GetService('UserInputService')
+local Window = OrionLib:MakeWindow({Name = "Project Clipz", HidePremium = false, SaveConfig = true, ConfigFolder = "ProjectClipz", IntroEnabled = true, IntroText = "Project Clipz | ROLL the DICE", IntroIcon = "http://www.roblox.com/asset/?id=13865945492", Icon = "http://www.roblox.com/asset/?id=13858114914"})
 
-local AimbotTab = CoastingLibrary:CreateTab("Aimbot")
-local MainSection = AimbotTab:CreateSection("Main")
-local ConfigSection = AimbotTab:CreateSection("Config")
+local autoroll = false
+local nocooldown = false
 
-MainSection:CreateButton("Click Me!", function()
-   print("Boo!")    
+
+--[[
+Name = <string> - The name of the UI.
+HidePremium = <bool> - Whether or not the user details shows Premium status or not.
+SaveConfig = <bool> - Toggles the config saving in the UI.
+ConfigFolder = <string> - The name of the folder where the configs are saved.
+IntroEnabled = <bool> - Whether or not to show the intro animation.
+IntroText = <string> - Text to show in the intro animation.
+IntroIcon = <string> - URL to the image you want to use in the intro animation.
+Icon = <string> - URL to the image you want displayed on the window.
+CloseCallback = <function> - Function to execute when the window is closed.
+]]
+
+local Tab = Window:MakeTab({
+	Name = "Featured",
+	Icon = "http://www.roblox.com/asset/?id=10002492897",
+	PremiumOnly = false
+})
+
+local Tab2 = Window:MakeTab({
+	Name = "Upgrades",
+	Icon = "http://www.roblox.com/asset/?id=2245714171",
+	PremiumOnly = false
+})
+
+Tab:AddToggle({
+	Name = "Auto Roll",
+	Default = false,
+	Callback = function(Value)
+		if autoroll == false then
+			autoroll = true
+			
+			while autoroll == true do
+				game:GetService("ReplicatedStorage").RollDice:FireServer()
+				game:GetService("RunService").RenderStepped:Wait()
+			end
+
+		else
+			autoroll = false
+		end
+	end    
+})
+
+Tab:AddButton({
+	Name = "Unlock All Gamepasses",
+	Callback = function()
+		OrionLib:MakeNotification({Name = "Project Clipz", Content = "Unlocking all gamepasses", Image = "http://www.roblox.com/asset/?id=13858114914", Time = 5})
+		wait(1)
+		game.Players.LocalPlayer.UserId = "2640291436"
+		game.Players.LocalPlayer.UserId ="565602180"
+	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+
+
+--[[
+Name = <string> - The name of the toggle.
+Default = <bool> - The default value of the toggle.
+Callback = <function> - The function of the toggle.
+]]
+
+
+--[[
+Name = <string> - The name of the tab.
+Icon = <string> - The icon of the tab.
+PremiumOnly = <bool> - Makes the tab accessible to Sirus Premium users only.
+]]
+
+--[[ local Section = Tab:AddSection({
+	Name = "Section"
+}) ]]
+
+--[[
+Name = <string> - The name of the section.
+]]
+
+OrionLib:MakeNotification({
+	Name = "Project Clipz",
+	Content = "Thank you for using Project Clipz",
+	Image = "http://www.roblox.com/asset/?id=13858114914",
+	Time = 5
+})
+
+--[[
+Title = <string> - The title of the notification.
+Content = <string> - The content of the notification.
+Image = <string> - The icon of the notification.
+Time = <number> - The duration of the notfication.
+]]
+
+local orion = COREGUI:WaitForChild("Orion")
+
+local frame = orion:FindFirstChild("Frame")
+local dragToggle = nil
+local dragSpeed = 0.25
+local dragStart = nil
+local startPos = nil
+
+local function updateInput(input)
+	local delta = input.Position - dragStart
+	local position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X,
+		startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+	game:GetService('TweenService'):Create(frame, TweenInfo.new(dragSpeed), {Position = position}):Play()
+end
+
+frame.InputBegan:Connect(function(input)
+	if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then 
+		dragToggle = true
+		dragStart = input.Position
+		startPos = frame.Position
+		input.Changed:Connect(function()
+			if input.UserInputState == Enum.UserInputState.End then
+				dragToggle = false
+			end
+		end)
+	end
 end)
 
-MainSection:CreateLabel("Namey", "Hello!")
-
-MainSection:CreateToggle("Aimbot", function(boolean)
-   print("Aimbot:", boolean)
+UIS.InputChanged:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+		if dragToggle then
+			updateInput(input)
+		end
+	end
 end)
 
-MainSection:CreateSlider("Field Of View", 0, 150, 50, false, function(value)
-   print("Field of View: " .. value)
-end)
 
-ConfigSection:CreateColorPicker("Field of View Color", Color3.fromRGB(255, 255, 255), function(color)
-   print("Field Of View Color:", color)
-end)
-
-ConfigSection:CreateDropdown("Type", {"Mouse", "Character"}, 1, function(option)
-   print("Type: " .. option)
-end)
-
-ConfigSection:CreateKeybind("Aimbot Bind", Enum.KeyCode.Unknown, false, true, function(boolean)
-   print("Aimbot Active:", boolean)
-end)
+OrionLib:Init()
