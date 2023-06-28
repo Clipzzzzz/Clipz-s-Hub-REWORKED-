@@ -6,6 +6,12 @@ local Window = OrionLib:MakeWindow({Name = "Project Clipz", HidePremium = false,
 local autoroll = false
 local nocooldown = false
 
+coroutine.wrap(function()
+	while autoroll == true do
+		game:GetService("ReplicatedStorage").RollDice:FireServer()
+		wait()
+	end
+end)()
 
 --[[
 Name = <string> - The name of the UI.
@@ -37,14 +43,6 @@ Tab:AddToggle({
 	Callback = function(Value)
 		if autoroll == false then
 			autoroll = true
-			
-			coroutine.wrap(function()
-			while autoroll == true do
-				game:GetService("ReplicatedStorage").RollDice:FireServer()
-wait()
-				end
-			end)()
-
 		else
 			autoroll = false
 		end
@@ -57,6 +55,7 @@ Tab:AddButton({
 		OrionLib:MakeNotification({Name = "Project Clipz", Content = "Unlocking all gamepasses", Image = "http://www.roblox.com/asset/?id=13858114914", Time = 5})
 		wait(1)
 		game.Players.LocalPlayer.UserId = "2640291436"
+		wait(0.1)
 		game.Players.LocalPlayer.UserId ="565602180"
 	end    
 })
