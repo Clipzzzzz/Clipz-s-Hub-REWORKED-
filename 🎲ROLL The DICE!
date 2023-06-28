@@ -44,7 +44,10 @@ Tab:AddToggle({
 
 coroutine.wrap(function()
 	while autoroll == true do
-		game:GetService("ReplicatedStorage").RollDice:FireServer()
+		local replicatedStorage = game:GetService("ReplicatedStorage")
+		local roll = replicatedStorage.RollDice
+		
+		roll:FireServer()
 		wait(0.01)
 	end
 end)()
@@ -55,7 +58,7 @@ Tab:AddButton({
 		OrionLib:MakeNotification({Name = "Project Clipz", Content = "Unlocking all gamepasses", Image = "http://www.roblox.com/asset/?id=13858114914", Time = 5})
 		wait(1)
 		game.Players.LocalPlayer.UserId = "2640291436"
-		wait(0.5)
+		wait(10)
 		game.Players.LocalPlayer.UserId ="565602180"
 	end    
 })
