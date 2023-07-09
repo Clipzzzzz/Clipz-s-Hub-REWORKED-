@@ -14,6 +14,7 @@ end)]]
 tab:Toggle("Auto Farm Chests",false, function(t)
 	print(t)
 	while t == true do
+		wait(0.05)
 		for i,v in game.Workspace.chests:GetChildren() do
 		local player = game.Players.LocalPlayer
 			
@@ -28,6 +29,7 @@ end)
 tab:Toggle("Auto Open Chests",false, function(t)
 	print(t)
 	while t == true do
+		wait(0.05)
 		for i,tool in game.Players.LocalPlayer.Backpack:GetChildren() do
 			tool.Parent = game.Players.LocalPlayer.Character
 			tool:Activate()
