@@ -14,22 +14,28 @@ end)]]
 tab:Toggle("Auto Farm Chests",false, function(t)
 	print(t)
 	
-	coroutine.wrap(function()
-	while t == true do
-		wait(0.05)
+	
+	if t == true then
 		for i,v in game.Workspace.chests:GetChildren() do
-			if t ~= false then
+
 		local player = game.Players.LocalPlayer
 			
 		game.Workspace[player.Name]:SetPrimaryPartCFrame(v.CFrame) 
 
 			local chestprox = v:FindFirstChildOfClass("ProximityPrompt")
 					fireproximityprompt(chestprox)
-				end
+		end
+		game.Workspace.chests.ChildAdded:Connect(function()
+			if t ~= false then
+				local player = game.Players.LocalPlayer
+
+				game.Workspace[player.Name]:SetPrimaryPartCFrame(v.CFrame) 
+
+				local chestprox = v:FindFirstChildOfClass("ProximityPrompt")
+				fireproximityprompt(chestprox)
 			end
-		end	
-	end)()
-	
+		end)
+	end	
 end)
 
 tab:Toggle("Auto Open Chests",false, function(t)
@@ -38,10 +44,10 @@ tab:Toggle("Auto Open Chests",false, function(t)
 	coroutine.wrap(function()
 	while t == true do
 		wait(0.05)
-		for i,tool in game.Players.LocalPlayer.Backpack:GetChildren() do
-			tool.Parent = game.Players.LocalPlayer.Character
-			tool:Activate()
-				tool.Parent = game.Players.LocalPlayer.Backpack
+		for i,v in game.Players.LocalPlayer.Backpack:GetChildren() do
+			v.Parent = game.Players.LocalPlayer.Character
+			v:Activate()
+			v.Parent = game.Players.LocalPlayer.Backpack
 			end
 		end	
 	end)()
