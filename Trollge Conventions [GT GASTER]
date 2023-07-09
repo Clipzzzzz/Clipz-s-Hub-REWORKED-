@@ -1,41 +1,65 @@
 local lib = loadstring(game:HttpGet"https://raw.githubusercontent.com/dawid-scripts/UI-Libs/main/Vape.txt")()
 
-local win = lib:Window("PREVIEW",Color3.fromRGB(44, 120, 224), Enum.KeyCode.RightControl)
+local win = lib:Window("Project Clipz",Color3.fromRGB(44, 120, 224), Enum.KeyCode.RightControl)
 
-local tab = win:Tab("Tab 1")
+local tab = win:Tab("Main")
+local tab2 = win:Tab("Player")
+local tab3 = win:Tab("Misc")
 
-tab:Button("Button", function()
-lib:Notification("Notification", "Hello!", "Hi!")
+
+--[[tab:Button("Button", function()
+	lib:Notification("Notification", "Hello!", "Hi!")
+end)]]
+
+tab:Toggle("Auto Farm Chests",false, function(t)
+	print(t)
+	while t == true do
+		for i,v in game.Workspace.chests:GetChildren() do
+		local player = game.Players.LocalPlayer
+			
+		game.Workspace[player.Name]:SetPrimaryPartCFrame(v.CFrame) 
+
+			local chestprox = v:FindFirstChildOfClass("ProximityPrompt")
+			fireproximityprompt(chestprox)
+		end	
+	end
 end)
 
-tab:Toggle("Toggle",false, function(t)
-print(t)
+tab:Toggle("Auto Open Chests",false, function(t)
+	print(t)
+	while t == true do
+		for i,tool in game.Players.LocalPlayer.Backpack:GetChildren() do
+			tool.Parent = game.Players.LocalPlayer.Character
+			tool:Activate()
+			tool.Parent = game.Players.LocalPlayer.Backpack
+		end	
+	end
 end)
 
-tab:Slider("Slider",0,100,30, function(t)
-print(t)
-end)
+--[[tab:Slider("Slider",0,100,30, function(t)
+	print(t)
+end)]]
 
-tab:Dropdown("Dropdown",{"Option 1","Option 2","Option 3","Option 4","Option 5"}, function(t)
-print(t)
-end)
+--[[tab:Dropdown("Dropdown",{"Option 1","Option 2","Option 3","Option 4","Option 5"}, function(t)
+	print(t)
+end)]]
 
-tab:Colorpicker("Colorpicker",Color3.fromRGB(255,0,0), function(t)
-print(t)
-end)
+--[[tab3:Colorpicker("Colorpicker",Color3.fromRGB(255, 255, 255), function(t)
+	print(t)
+end)]]
 
 tab:Textbox("Textbox",true, function(t)
-print(t)
+	print(t)
 end)
 
-tab:Bind("Bind",Enum.KeyCode.RightShift, function()
-print("Pressed!")
+--[[tab:Bind("Bind",Enum.KeyCode.RightShift, function()
+	print("Pressed!")
+end)]]
+
+--tab:Label("Label")
+
+tab3:Colorpicker("Change UI Color",Color3.fromRGB(44, 120, 224), function(t)
+	lib:ChangePresetColor(Color3.fromRGB(t.R * 255, t.G * 255, t.B * 255))
 end)
 
-tab:Label("Label")
-
-local changeclr = win:Tab("Change UI Color")
-
-changeclr:Colorpicker("Change UI Color",Color3.fromRGB(44, 120, 224), function(t)
-lib:ChangePresetColor(Color3.fromRGB(t.R * 255, t.G * 255, t.B * 255))
-end)
+lib:Notification("Project Clipz", "Thank you for using Project Clipz! [Support: [https://dsc.gg/projectc]", "Noted")
