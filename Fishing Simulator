@@ -22,9 +22,7 @@ local Distance = 5
 
 
 tab:Toggle("Auto Farm Sharks",false, function(t)
-	print(t)
 	autofarm = t
-	warn("autofarm =".. autofarm)
 end)
 
 --[[tab:Slider("Slider",0,100,30, function(t)
