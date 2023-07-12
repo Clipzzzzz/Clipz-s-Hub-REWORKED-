@@ -104,5 +104,3 @@ while autofarm == true do
 end
 
 lib:Notification("Project Clipz", "Thank you for using Project Clipz! [Support: [https://dsc.gg/projectc]", "Noted")
-lib:Notification("Pornhub.Com", "aky is so hot and sexy, owo i wanna pounce on him x3", "me too")
-lib:Notification("Project Clipz", "By clicking agree, you understand that the use of your IP Address will be permitted.", "Agree")
