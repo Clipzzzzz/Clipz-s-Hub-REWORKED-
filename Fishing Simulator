@@ -50,7 +50,7 @@ while autofarm == true do task.wait()
 							[3] = true
 						}
 
-						game:GetService("ReplicatedStorage"):WaitForChild("CloudFrameShared"):WaitForChild("DataStreams")WaitForChild("MonsterHit"):FireServer(unpack(args))
+						game:GetService("ReplicatedStorage"):WaitForChild("CloudFrameShared"):WaitForChild("DataStreams"):WaitForChild("MonsterHit"):FireServer(unpack(args))
 						end
 					until autofarm == false or v.Humanoid.Health == 0 or game:GetService("Players").LocalPlayer.Character.Humanoid.Health == 0
 			end
