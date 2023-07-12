@@ -11,7 +11,7 @@ local tab3 = win:Tab("Misc")
 	lib:Notification("Notification", "Hello!", "Hi!")
 end)]]
 	
-local autofarm
+local autofarm = true
 
 --_G.MonsterSelect = "Lower Moon Demon 4"
 
