@@ -14,7 +14,7 @@ end)]]
 local autofarm = true
 
 --_G.MonsterSelect = "Lower Moon Demon 4"
-g
+
 local Tool = "doubleededspear"
 
 local Mode = "Above"
