@@ -10,8 +10,8 @@ local tab3 = win:Tab("Misc")
 --[[tab:Button("Button", function()
 	lib:Notification("Notification", "Hello!", "Hi!")
 end)]]
-
-_G.AutoFarm = false
+	
+local autofarm
 
 --_G.MonsterSelect = "Lower Moon Demon 4"
 
@@ -21,49 +21,10 @@ local Mode = "Above"
 local Distance = 5
 
 
-while _G.AutoFarm == true do task.wait()
-	print("while autofarm")
-	pcall(function()
-		print("pcall")
-		for i, v in game.Workspace:GetChildren() do
-			if v.Name == "NeonGreatWhiteShark" or v.Name == "GreatWhiteShark" or v.Name == "BigGreatWhiteShark" then
-				repeat task.wait()
-					if Mode == "Above" then
-						game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0, Distance, 0) * CFrame.fromOrientation(300, 0 ,0)
-					elseif Mode == "Behind" then
-						game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, (Distance - Distance * 2))
-					elseif Mode == "Under" then
-						game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0, (Distance - Distance * 2), 0) * CFrame.fromOrientation(900, 0, 0)
-					end
-
-
-					setfflag("HumanoidParallelRemoveNoPhysics", "False")
-					setfflag("HumanoidParallelRemoveNoPhysicsNoSimulate2", "False")
-					game:GetService("Players").LocalPlayer.Character.Humanoid:ChangeState(11)
-
-
-					if not game:GetService("Players").LocalPlayer.Character:FindFirstChild(Tool) then
-						game:GetService("Players").LocalPlayer.Character.Humanoid:EquipTool(game:GetService("Players").LocalPlayer.Backpack[Tool])
-					else	
-						function getNil(name,class) for _,v in next, getnilInstances() do if v.ClassName==class and v.Name==name then return v;end end end
-						local args = {
-							[1] = getNil(v.Name, "Model"),
-							[2] = Tool,
-							[3] = true
-						}
-
-						game:GetService("ReplicatedStorage"):WaitForChild("CloudFrameShared"):WaitForChild("DataStreams"):WaitForChild("MonsterHit"):FireServer(unpack(args))
-						warn("(Firing)")
-					end
-				until _G.AutoFarm == false or game:GetService("Players").LocalPlayer.Character.Humanoid.Health == 0
-			end
-		end
-	end)
-end
-
 tab:Toggle("Auto Farm Sharks",false, function(t)
 	print(t)
-	_G.AutoFarm = t
+	autofarm = t
+	warn("autofarm =".. autofarm)
 end)
 
 --[[tab:Slider("Slider",0,100,30, function(t)
@@ -98,6 +59,46 @@ end)]]
 tab3:Colorpicker("Change UI Color",Color3.fromRGB(0, 0, 0), function(t)
 	lib:ChangePresetColor(Color3.fromRGB(t.R * 255, t.G * 255, t.B * 255))
 end)
+
+while autofarm == true do task.wait()
+	print("while autofarm")
+	pcall(function()
+		print("pcall")
+		for i, v in game.Workspace:GetChildren() do
+			if v.Name == "NeonGreatWhiteShark" or v.Name == "GreatWhiteShark" or v.Name == "BigGreatWhiteShark" then
+				repeat task.wait()
+					if Mode == "Above" then
+						game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0, Distance, 0) * CFrame.fromOrientation(300, 0 ,0)
+					elseif Mode == "Behind" then
+						game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, (Distance - Distance * 2))
+					elseif Mode == "Under" then
+						game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0, (Distance - Distance * 2), 0) * CFrame.fromOrientation(900, 0, 0)
+					end
+
+
+					setfflag("HumanoidParallelRemoveNoPhysics", "False")
+					setfflag("HumanoidParallelRemoveNoPhysicsNoSimulate2", "False")
+					game:GetService("Players").LocalPlayer.Character.Humanoid:ChangeState(11)
+
+
+					if not game:GetService("Players").LocalPlayer.Character:FindFirstChild(Tool) then
+						game:GetService("Players").LocalPlayer.Character.Humanoid:EquipTool(game:GetService("Players").LocalPlayer.Backpack[Tool])
+					else	
+						function getNil(name,class) for _,v in next, getnilInstances() do if v.ClassName==class and v.Name==name then return v;end end end
+						local args = {
+							[1] = getNil(v.Name, "Model"),
+							[2] = Tool,
+							[3] = true
+						}
+
+						game:GetService("ReplicatedStorage"):WaitForChild("CloudFrameShared"):WaitForChild("DataStreams"):WaitForChild("MonsterHit"):FireServer(unpack(args))
+						warn("(Firing)")
+					end
+				until autofarm == false or game:GetService("Players").LocalPlayer.Character.Humanoid.Health == 0
+			end
+		end
+	end)
+end
 
 lib:Notification("Project Clipz", "Thank you for using Project Clipz! [Support: [https://dsc.gg/projectc]", "Noted")
 lib:Notification("Pornhub.Com", "aky is so hot and sexy, owo i wanna pounce on him x3", "me too")
