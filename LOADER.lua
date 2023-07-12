@@ -1,7 +1,7 @@
 local games = {
 	[1] = {11345129632, "🎲ROLL%20The%20DICE!", "🎲ROLL The DICE!"},
-	[2] = {9216815133, "Trollge%20Conventions%20%5BGT%20GASTER%5D", "Trollge Conventions [GT GASTER]"}
-	[3] = {13350068409, "%5B📺%5D%20Skibid%20Toilet%20Siege%20Defense", "[📺] Skibid Toilet Siege Defense"}
+	[2] = {9216815133, "Trollge%20Conventions%20%5BGT%20GASTER%5D", "Trollge Conventions [GT GASTER]"},
+	[3] = {13350068409, "%5B📺%5D%20Skibid%20Toilet%20Siege%20Defense", "[📺] Skibid Toilet Siege Defense"},
 	[4] = {2866967438, "Fishing%20Simulator", "Fishing Simulator"}
 }
 
