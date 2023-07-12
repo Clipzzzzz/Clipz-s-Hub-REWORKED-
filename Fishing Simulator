@@ -15,7 +15,7 @@ local autofarm = false
 
 --_G.MonsterSelect = "Lower Moon Demon 4"
 
-local Tool = "doubleededspear"
+local Tool = "doubleedgedspear"
 
 local Mode = "Above"
 local Distance = 5
@@ -24,7 +24,7 @@ local Distance = 5
 while autofarm == true do task.wait()
 	pcall(function()
 			for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
-			if not game:GetService("Players"):FindFirstChild(v.Name) and v.Name == "NeonGreatWhiteShark" or v.Name == "GreatWhiteShark" or v.Name == "BigGreatWhiteShark" and v.Humanoid.Health > 0 then
+			if v.Name == "NeonGreatWhiteShark" or v.Name == "GreatWhiteShark" or v.Name == "BigGreatWhiteShark" then
 					repeat task.wait()
 						if Mode == "Above" then
 							game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0, Distance, 0) * CFrame.fromOrientation(300, 0 ,0)
@@ -53,7 +53,7 @@ while autofarm == true do task.wait()
 						game:GetService("ReplicatedStorage"):WaitForChild("CloudFrameShared"):WaitForChild("DataStreams")WaitForChild("MonsterHit"):FireServer(unpack(args))
 						end
 					until autofarm == false or v.Humanoid.Health == 0 or game:GetService("Players").LocalPlayer.Character.Humanoid.Health == 0
-				end
+			end
 		end
 	end)
 end
