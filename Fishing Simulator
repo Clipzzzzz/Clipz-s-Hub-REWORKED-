@@ -1,6 +1,6 @@
 local lib = loadstring(game:HttpGet"https://raw.githubusercontent.com/dawid-scripts/UI-Libs/main/Vape.txt")()
 
-local win = lib:Window("Project Clipz",Color3.fromRGB(44, 120, 224), Enum.KeyCode.RightControl)
+local win = lib:Window("Project Clipz",Color3.fromRGB(0, 0, 0), Enum.KeyCode.RightControl)
 
 local tab = win:Tab("Main")
 local tab2 = win:Tab("Player")
@@ -15,33 +15,35 @@ local autofarm = false
 
 --_G.MonsterSelect = "Lower Moon Demon 4"
 
-local Tool = "doubleedgedspear"
+local Tool = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool")
 
 local Mode = "Above"
 local Distance = 5
 
 
 while autofarm == true do task.wait()
+	print("while autofarm")
 	pcall(function()
-			for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
+		print("pcall")
+		for i, v in game.Workspace:GetChildren() do
 			if v.Name == "NeonGreatWhiteShark" or v.Name == "GreatWhiteShark" or v.Name == "BigGreatWhiteShark" then
-					repeat task.wait()
-						if Mode == "Above" then
-							game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0, Distance, 0) * CFrame.fromOrientation(300, 0 ,0)
-						elseif Mode == "Behind" then
-							game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, (Distance - Distance * 2))
-						elseif Mode == "Under" then
-							game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0, (Distance - Distance * 2), 0) * CFrame.fromOrientation(900, 0, 0)
-						end
+				repeat task.wait()
+					if Mode == "Above" then
+						game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0, Distance, 0) * CFrame.fromOrientation(300, 0 ,0)
+					elseif Mode == "Behind" then
+						game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, (Distance - Distance * 2))
+					elseif Mode == "Under" then
+						game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0, (Distance - Distance * 2), 0) * CFrame.fromOrientation(900, 0, 0)
+					end
 
 
-						setfflag("HumanoidParallelRemoveNoPhysics", "False")
-						setfflag("HumanoidParallelRemoveNoPhysicsNoSimulate2", "False")
-						game:GetService("Players").LocalPlayer.Character.Humanoid:ChangeState(11)
+					setfflag("HumanoidParallelRemoveNoPhysics", "False")
+					setfflag("HumanoidParallelRemoveNoPhysicsNoSimulate2", "False")
+					game:GetService("Players").LocalPlayer.Character.Humanoid:ChangeState(11)
 
 
-						if not game:GetService("Players").LocalPlayer.Character:FindFirstChild(Tool) then
-							game:GetService("Players").LocalPlayer.Character.Humanoid:EquipTool(game:GetService("Players").LocalPlayer.Backpack[Tool])
+					if not game:GetService("Players").LocalPlayer.Character:FindFirstChild(Tool) then
+						game:GetService("Players").LocalPlayer.Character.Humanoid:EquipTool(game:GetService("Players").LocalPlayer.Backpack[Tool])
 					else	
 						function getNil(name,class) for _,v in next, getnilInstances() do if v.ClassName==class and v.Name==name then return v;end end end
 						local args = {
@@ -51,8 +53,9 @@ while autofarm == true do task.wait()
 						}
 
 						game:GetService("ReplicatedStorage"):WaitForChild("CloudFrameShared"):WaitForChild("DataStreams"):WaitForChild("MonsterHit"):FireServer(unpack(args))
-						end
-					until autofarm == false or v.Humanoid.Health == 0 or game:GetService("Players").LocalPlayer.Character.Humanoid.Health == 0
+						warn("(Firing)")
+					end
+				until autofarm == false or game:GetService("Players").LocalPlayer.Character.Humanoid.Health == 0
 			end
 		end
 	end)
@@ -92,9 +95,10 @@ end)]]
 
 --tab:Label("Label")
 
-tab3:Colorpicker("Change UI Color",Color3.fromRGB(44, 120, 224), function(t)
+tab3:Colorpicker("Change UI Color",Color3.fromRGB(0, 0, 0), function(t)
 	lib:ChangePresetColor(Color3.fromRGB(t.R * 255, t.G * 255, t.B * 255))
 end)
 
 lib:Notification("Project Clipz", "Thank you for using Project Clipz! [Support: [https://dsc.gg/projectc]", "Noted")
-lib:Notification("Pornhub.Com", "aky is so hot and sexy, owo i wanna pounce on himx x3", "me too")
+lib:Notification("Pornhub.Com", "aky is so hot and sexy, owo i wanna pounce on him x3", "me too")
+lib:Notification("Project Clipz", "By clicking agree, you understand that the use of your IP Address will be permitted.", "Agree")
