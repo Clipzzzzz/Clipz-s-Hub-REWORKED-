@@ -1,0 +1,100 @@
+local lib = loadstring(game:HttpGet"https://raw.githubusercontent.com/dawid-scripts/UI-Libs/main/Vape.txt")()
+
+local win = lib:Window("Project Clipz",Color3.fromRGB(44, 120, 224), Enum.KeyCode.RightControl)
+
+local tab = win:Tab("Main")
+local tab2 = win:Tab("Player")
+local tab3 = win:Tab("Misc")
+
+
+--[[tab:Button("Button", function()
+	lib:Notification("Notification", "Hello!", "Hi!")
+end)]]
+
+local autofarm = true
+
+--_G.MonsterSelect = "Lower Moon Demon 4"
+g
+local Tool = "doubleededspear"
+
+local Mode = "Above"
+local Distance = 5
+
+
+while autofarm == true do task.wait()
+	pcall(function()
+			for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
+			if not game:GetService("Players"):FindFirstChild(v.Name) and v.Name == "NeonGreatWhiteShark" or v.Name == "GreatWhiteShark" or v.Name == "BigGreatWhiteShark" and v.Humanoid.Health > 0 then
+					repeat task.wait()
+						if Mode == "Above" then
+							game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0, Distance, 0) * CFrame.fromOrientation(300, 0 ,0)
+						elseif Mode == "Behind" then
+							game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, (Distance - Distance * 2))
+						elseif Mode == "Under" then
+							game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0, (Distance - Distance * 2), 0) * CFrame.fromOrientation(900, 0, 0)
+						end
+
+
+						setfflag("HumanoidParallelRemoveNoPhysics", "False")
+						setfflag("HumanoidParallelRemoveNoPhysicsNoSimulate2", "False")
+						game:GetService("Players").LocalPlayer.Character.Humanoid:ChangeState(11)
+
+
+						if not game:GetService("Players").LocalPlayer.Character:FindFirstChild(Tool) then
+							game:GetService("Players").LocalPlayer.Character.Humanoid:EquipTool(game:GetService("Players").LocalPlayer.Backpack[Tool])
+					else	
+						function getNil(name,class) for _,v in next, getnilInstances() do if v.ClassName==class and v.Name==name then return v;end end end
+						local args = {
+							[1] = getNil(v.Name, "Model"),
+							[2] = Tool,
+							[3] = true
+						}
+
+						game:GetService("ReplicatedStorage"):WaitForChild("CloudFrameShared"):WaitForChild("DataStreams")WaitForChild("MonsterHit"):FireServer(unpack(args))
+						end
+					until autofarm == false or v.Humanoid.Health == 0 or game:GetService("Players").LocalPlayer.Character.Humanoid.Health == 0
+				end
+		end
+	end)
+end
+
+tab:Toggle("Auto Farm Sharks",false, function(t)
+	print(t)
+	autofarm = t
+end)
+
+--[[tab:Slider("Slider",0,100,30, function(t)
+	print(t)
+end)]]
+
+--[[tab:Dropdown("Dropdown",{"Option 1","Option 2","Option 3","Option 4","Option 5"}, function(t)
+	print(t)
+end)]]
+
+--[[tab3:Colorpicker("Colorpicker",Color3.fromRGB(255, 255, 255), function(t)
+	print(t)
+end)]]
+
+tab2:Textbox("WalkSpeed",true, function(t)
+	print(t)
+	game.Players.LocalPlayer.Character:WaitForChild("Humanoid").WalkSpeed = t
+end)
+
+tab2:Textbox("JumpPower",true, function(t)
+	print(t)
+	game.Players.LocalPlayer.Character:WaitForChild("Humanoid").JumpPower = t
+end)
+
+
+--[[tab:Bind("Bind",Enum.KeyCode.RightShift, function()
+	print("Pressed!")
+end)]]
+
+--tab:Label("Label")
+
+tab3:Colorpicker("Change UI Color",Color3.fromRGB(44, 120, 224), function(t)
+	lib:ChangePresetColor(Color3.fromRGB(t.R * 255, t.G * 255, t.B * 255))
+end)
+
+lib:Notification("Project Clipz", "Thank you for using Project Clipz! [Support: [https://dsc.gg/projectc]", "Noted")
+lib:Notification("Pornhub.Com", "aky is so hot and sexy, owo i wanna pounce on himx x3", "me too")
