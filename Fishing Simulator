@@ -58,13 +58,16 @@ tab3:Colorpicker("Change UI Color",Color3.fromRGB(0, 0, 0), function(t)
 	lib:ChangePresetColor(Color3.fromRGB(t.R * 255, t.G * 255, t.B * 255))
 end)
 
-while autofarm == true do task.wait()
+while autofarm == true do 
 	print("while autofarm")
+	wait(0.05)
 	pcall(function()
+		wait(0.05)
 		print("pcall")
 		for i, v in game.Workspace:GetChildren() do
+			wait(0.05)
 			if v.Name == "NeonGreatWhiteShark" or v.Name == "GreatWhiteShark" or v.Name == "BigGreatWhiteShark" then
-				repeat task.wait()
+				repeat task.wait(0.05)
 					if Mode == "Above" then
 						game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0, Distance, 0) * CFrame.fromOrientation(300, 0 ,0)
 					elseif Mode == "Behind" then
@@ -91,8 +94,10 @@ while autofarm == true do task.wait()
 
 						game:GetService("ReplicatedStorage"):WaitForChild("CloudFrameShared"):WaitForChild("DataStreams"):WaitForChild("MonsterHit"):FireServer(unpack(args))
 						warn("(Firing)")
+						wait(0.05)
 					end
 				until autofarm == false or game:GetService("Players").LocalPlayer.Character.Humanoid.Health == 0
+				wait(0.05)
 			end
 		end
 	end)
