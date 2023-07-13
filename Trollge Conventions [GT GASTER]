@@ -193,10 +193,8 @@ tab3:Button("Testing Area", function()
 		safezonepart.Anchored = true
 		safezonepart.Position = Vector3.new(-38, -45, 119)
 		safezonepart.Transparency = 1
-		while getgenv().sz do
 			wait(0.5)
-			game:GetService "Players".LocalPlayer.Character:FindFirstChild "HumanoidRootPart".CFrame = safezonepart.CFrame
-		end	
+			game:GetService "Players".LocalPlayer.Character:FindFirstChild "HumanoidRootPart".CFrame = safezonepart.CFrame	
 	else
 		game.Workspace:FindFirstChild("PC_TestingArea"):Destroy()
 		local safezonepart = Instance.new("Part")
@@ -205,12 +203,11 @@ tab3:Button("Testing Area", function()
 		safezonepart.Anchored = true
 		safezonepart.Position = Vector3.new(-38, -45, 119)
 		safezonepart.Transparency = 1
-		while getgenv().sz do
 			wait(0.5)
 			game:GetService "Players".LocalPlayer.Character:FindFirstChild "HumanoidRootPart".CFrame = safezonepart.CFrame
 		end	
-	end
-end)
+	end)
+
 
 --[[tab:Bind("Bind",Enum.KeyCode.RightShift, function()
 	print("Pressed!")
