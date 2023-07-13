@@ -6,8 +6,6 @@ local tab = win:Tab("Main")
 local tab2 = win:Tab("Player")
 local tab3 = win:Tab("Misc")
 
-local autoopenmode = "New"
-
 tab:Toggle("Auto Farm Chests",false, function(t)
 	print(t)
 	getgenv().afc = t
@@ -22,9 +20,9 @@ tab:Toggle("Auto Farm Chests",false, function(t)
 			fireproximityprompt(chestprox)
 			-- The function that takes place when the toggle is pressed
 			-- The variable (Value) is a boolean on whether the toggle is true or false
+			end
 		end
-	end
-end)
+	end)
 
 tab:Toggle("Auto Open Chests",false, function(t)
 	print(t)
@@ -47,43 +45,24 @@ tab:Toggle("Auto Open Chests",false, function(t)
 		["096 Chest"] = "096 Chest", 
 		["Troll 999 Chest"] = "Troll 999 Chest"
 	}
-
+	
 	while getgenv().aoc do
 		wait(0.05)
-		if autoopenmode == "Old" then
 		for i,v in game.Players.LocalPlayer.Backpack:GetChildren() do
+			wait(0.05)
 			if v:IsA "Tool" then
+				for i,z in chests do
+					if v.Name == z then
 				local tool = v
 				tool.Parent = game.Players.LocalPlayer.Character
 				tool:Activate()
-					tool.Parent = game.Players.LocalPlayer.Backpack
-				end
-			end
-		elseif autoopenmode == "New" then
-			for i,v in game.Players.LocalPlayer.Backpack:GetChildren() do
-				wait(0.05)
-				if v:IsA "Tool" then
-					for i,z in chests do
-						if v.Name == z then
-							local tool = v
-							tool.Parent = game.Players.LocalPlayer.Character
-							tool:Activate()
-							tool.Parent = game.Players.LocalPlayer.Backpack
-						end
+						tool.Parent = game.Players.LocalPlayer.Backpack
 					end
 				end
 			end
 		end
 	end
-	
-	
 end)	
-
-tab:Dropdown("Auto Open Mode",{"Old","New"}, function(t)
-	print(t)
-	autoopenmode = t
-end)
-
 
 tab:Toggle("Safe Zone",false, function(t)
 	print(t)
@@ -268,5 +247,3 @@ tab3:Colorpicker("Change UI Color",Color3.fromRGB(44, 120, 224), function(t)
 end)
 
 lib:Notification("Project Clipz", "Thank you for using Project Clipz! [Support: [https://dsc.gg/projectc]", "Noted")
-wait(5)
-lib:Notification("Project Clipz", "Hey just wanted to let you know, the difference between the auto open modes is that in the old version you are laggier but gain more and in the new version its more smooth but you gain less.", "Noted")
