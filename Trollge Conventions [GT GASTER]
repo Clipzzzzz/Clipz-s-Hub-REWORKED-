@@ -26,30 +26,21 @@ tab:Toggle("Auto Farm Chests",false, function(t)
 tab:Toggle("Auto Open Chests",false, function(t)
 	print(t)
 	getgenv().aoc = t
-	if getgenv().aoc then
+	
+		while getgenv().aoc do
 		for i,v in game.Players.LocalPlayer.Backpack:GetChildren() do
 			wait(0.05)
 
 			local player = game.Players.LocalPlayer
-			
+
 			if v.ClassName == "Tool" then
-			local tool = v
-			tool.Parent = player.Character
-			tool:Activate()
-				tool.Parent = player.Backpack
-				end
-			end
-		end
-		game.Players.LocalPlayer.Backpack.ChildAdded:Connect(function(child)
-			if getgenv().aoc then
-				local player = game.Players.LocalPlayer
-				
-				local tool = child
+				local tool = v
 				tool.Parent = player.Character
 				tool:Activate()
 				tool.Parent = player.Backpack
+			end
 		end
-	end)
+	end
 end)	
 
 tab:Toggle("Safe Zone",false, function(t)
