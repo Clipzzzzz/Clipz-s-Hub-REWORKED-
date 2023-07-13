@@ -27,17 +27,14 @@ tab:Toggle("Auto Open Chests",false, function(t)
 	print(t)
 	getgenv().aoc = t
 	
-		while getgenv().aoc do
+	while getgenv().aoc do
+		wait(0.05)
 		for i,v in game.Players.LocalPlayer.Backpack:GetChildren() do
-			wait(0.05)
-
-			local player = game.Players.LocalPlayer
-
-			if v.ClassName == "Tool" then
+			if v:IsA "Tool" then
 				local tool = v
-				tool.Parent = player.Character
+				tool.Parent = game.Players.LocalPlayer.Character
 				tool:Activate()
-				tool.Parent = player.Backpack
+				tool.Parent = game.Players.LocalPlayer.Backpack
 			end
 		end
 	end
