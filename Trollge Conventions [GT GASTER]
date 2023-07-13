@@ -104,6 +104,8 @@ tab:Toggle("Auto Delete Common Chests",false, function(t)
 				local tool = v
 				if tool.Name == z then
 					tool:Destroy()
+					end
+				end
 			end
 		end
 		game.Players.LocalPlayer.Backpack.ChildAdded:Connect(function(child)
@@ -118,9 +120,7 @@ tab:Toggle("Auto Delete Common Chests",false, function(t)
 				 end
 			  end
 		  end)
-	   end	
-	end
-end)
+	   end)
 
 --[[tab:Slider("Slider",0,100,30, function(t)
 	print(t)
