@@ -122,7 +122,7 @@ tab:Toggle("Auto Delete Common Chests",false, function(t)
 	local commontable = {
 		["Chest"] = "Chest",
 		["Dark Chest"] = "Dark Chest",
-		["Light Chest"] = "Light Chest"
+		["Fish Chest"] = "Fish Chest"
 }
 	
 	while getgenv().adcc do
@@ -139,7 +139,143 @@ tab:Toggle("Auto Delete Common Chests",false, function(t)
 			end
 		end
 	end
- end)
+end)
+
+tab:Toggle("Auto Delete Uncommon Chests",false, function(t)
+	print(t)
+	getgenv().aduc = t
+
+	local uncommontable = {
+		["Undertale Chest_p"] = "Undertale Chest_p",
+		["LightChest_p"] = "LightChest_p",
+		["Bone Chest-p"] = "Bone Chest-p"
+	}
+
+	while getgenv().aduc do
+		wait(0.05)
+		for i,v in game.Players.LocalPlayer.Backpack:GetChildren() do
+			wait(0.05)
+			if v:IsA "Tool" then
+				for i,z in uncommontable do
+					if v.Name == z then
+						local tool = v
+						tool:Destroy()
+					end
+				end
+			end
+		end
+	end
+end)
+
+tab:Toggle("Auto Delete Rare Chests",false, function(t)
+	print(t)
+	getgenv().adrc = t
+
+	local raretable = {
+		["Ink Chest-p"] = "Ink Chest-p",
+		["Trevor Chest-p"] = "Trevor Chest-p",
+		["Love Chest-p"] = "Love Chest-p",
+		["Giant Fish Chest-p"] = "Giant Fish Chest-p",
+	}
+
+	while getgenv().adrc do
+		wait(0.05)
+		for i,v in game.Players.LocalPlayer.Backpack:GetChildren() do
+			wait(0.05)
+			if v:IsA "Tool" then
+				for i,z in raretable do
+					if v.Name == z then
+						local tool = v
+						tool:Destroy()
+					end
+				end
+			end
+		end
+	end
+end)
+
+tab:Toggle("Auto Delete Rare Chests",false, function(t)
+	print(t)
+	getgenv().adrc = t
+
+	local raretable = {
+		["Ink Chest-p"] = "Ink Chest-p",
+		["Trevor Chest-p"] = "Trevor Chest-p",
+		["Love Chest-p"] = "Love Chest-p",
+		["Giant Fish Chest-p"] = "Giant Fish Chest-p",
+	}
+
+	while getgenv().adrc do
+		wait(0.05)
+		for i,v in game.Players.LocalPlayer.Backpack:GetChildren() do
+			wait(0.05)
+			if v:IsA "Tool" then
+				for i,z in raretable do
+					if v.Name == z then
+						local tool = v
+						tool:Destroy()
+					end
+				end
+			end
+		end
+	end
+end)
+
+tab:Toggle("Auto Delete Epic Chests",false, function(t)
+	print(t)
+	getgenv().adec = t
+
+	local raretable = {
+		["Flesh Chest-p"] = "Flesh Chest-p",
+		["106 Chest-p"] = "106 Chest-p",
+		["Troll-999 Chest-p"] = "Troll-999 Chest-p",
+		["Earth Chest-p"] = "Earth Chest-p",
+		["096 Chest-p"] = "096 Chest-p"
+	}
+
+	while getgenv().adec do
+		wait(0.05)
+		for i,v in game.Players.LocalPlayer.Backpack:GetChildren() do
+			wait(0.05)
+			if v:IsA "Tool" then
+				for i,z in raretable do
+					if v.Name == z then
+						local tool = v
+						tool:Destroy()
+					end
+				end
+			end
+		end
+	end
+end)
+
+tab:Toggle("Auto Delete Legendary Chests",false, function(t)
+	print(t)
+	getgenv().adec = t
+
+	local raretable = {
+		["CentiChest-p"] = "CentiChest-p",
+		["Universe Chest-p"] = "Universe Chest-p",
+		["Darkness Chest-p"] = "Darkness Chest-p",
+		["Drip Chest"] = "Drip Chest",
+		["OmniChest-p"] = "OmniChest-p"
+	}
+
+	while getgenv().adec do
+		wait(0.05)
+		for i,v in game.Players.LocalPlayer.Backpack:GetChildren() do
+			wait(0.05)
+			if v:IsA "Tool" then
+				for i,z in raretable do
+					if v.Name == z then
+						local tool = v
+						tool:Destroy()
+					end
+				end
+			end
+		end
+	end
+end)
 
 --[[tab:Slider("Slider",0,100,30, function(t)
 	print(t)
