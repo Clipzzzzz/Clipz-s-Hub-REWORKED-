@@ -186,7 +186,30 @@ tab2:Button("Open Fly UI", function()
 end)
 
 tab3:Button("Testing Area", function()
-	game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position = Vector3.new(-38, -45, 119) 
+	if game.Workspace:FindFirstChild("PC_TestingArea") == nil then
+		local safezonepart = Instance.new("Part")
+		safezonepart.Name = "PC_TestingArea"
+		safezonepart.Parent = workspace
+		safezonepart.Anchored = true
+		safezonepart.Position = Vector3.new(-38, -45, 119)
+		safezonepart.Transparency = 1
+		while getgenv().sz do
+			wait(0.5)
+			game:GetService "Players".LocalPlayer.Character:FindFirstChild "HumanoidRootPart".CFrame = safezonepart.CFrame
+		end	
+	else
+		game.Workspace:FindFirstChild("PC_TestingArea"):Destroy()
+		local safezonepart = Instance.new("Part")
+		safezonepart.Name = "PC_TestingArea"
+		safezonepart.Parent = workspace
+		safezonepart.Anchored = true
+		safezonepart.Position = Vector3.new(-38, -45, 119)
+		safezonepart.Transparency = 1
+		while getgenv().sz do
+			wait(0.5)
+			game:GetService "Players".LocalPlayer.Character:FindFirstChild "HumanoidRootPart".CFrame = safezonepart.CFrame
+		end	
+	end
 end)
 
 --[[tab:Bind("Bind",Enum.KeyCode.RightShift, function()
