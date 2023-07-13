@@ -177,18 +177,37 @@ function createtele(name, pos)
 	zonepart.Transparency = 1
 end
 
-tab3:Button("Testing Area", function()
-	if game.Workspace:FindFirstChild("PC_TestingArea") == nil then
-		createtele("PC_TestingArea", Vector3.new(1511.9197998046875, 182.73626708984375, 2348.81591796875))
-			wait(0.5)
-		game:GetService "Players".LocalPlayer.Character:FindFirstChild "HumanoidRootPart".CFrame = game.Workspace:FindFirstChild("PC_TestingArea").CFrame	
+tab3:Button("Arena", function()
+	local zonename = "PC_Arena"
+	local position = Vector3.new(-85.92035675048828, -42.6500129699707, -91.29226684570312)
+	
+	if game.Workspace:FindFirstChild(zonename) == nil then
+		createtele(zonename, position)
+		wait(0.5)
+		game:GetService "Players".LocalPlayer.Character:FindFirstChild "HumanoidRootPart".CFrame = game.Workspace:FindFirstChild(zonename).CFrame	
 	else
-		game.Workspace:FindFirstChild("PC_TestingArea"):Destroy()
-		createtele("PC_TestingArea", Vector3.new(1511.9197998046875, 182.73626708984375, 2348.81591796875))
-			wait(0.5)
-		game:GetService "Players".LocalPlayer.Character:FindFirstChild "HumanoidRootPart".CFrame = game.Workspace:FindFirstChild("PC_TestingArea").CFrame	
-		end	
-	end)
+		game.Workspace:FindFirstChild(zonename):Destroy()
+		createtele(zonename, position)
+		wait(0.5)
+		game:GetService "Players".LocalPlayer.Character:FindFirstChild "HumanoidRootPart".CFrame = game.Workspace:FindFirstChild(zonename).CFrame	
+	end	
+end)
+
+tab3:Button("Testing Area", function()
+	local zonename = "PC_TestingArea"
+	local position = Vector3.new(1511.9197998046875, 182.73626708984375, 2348.81591796875)
+
+	if game.Workspace:FindFirstChild(zonename) == nil then
+		createtele(zonename, position)
+		wait(0.5)
+		game:GetService "Players".LocalPlayer.Character:FindFirstChild "HumanoidRootPart".CFrame = game.Workspace:FindFirstChild(zonename).CFrame	
+	else
+		game.Workspace:FindFirstChild(zonename):Destroy()
+		createtele(zonename,position)
+		wait(0.5)
+		game:GetService "Players".LocalPlayer.Character:FindFirstChild "HumanoidRootPart".CFrame = game.Workspace:FindFirstChild(zonename).CFrame	
+	end		
+end)
 
 
 --[[tab:Bind("Bind",Enum.KeyCode.RightShift, function()
