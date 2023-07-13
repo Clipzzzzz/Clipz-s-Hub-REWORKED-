@@ -123,40 +123,21 @@ tab:Toggle("Auto Delete Common Chests",false, function(t)
 		["Light Chest"] = "Light Chest"
 }
 	
-	if getgenv().adcc then
+	while getgenv().adcc do
+		wait(0.05)
 		for i,v in game.Players.LocalPlayer.Backpack:GetChildren() do
-			print("backpack children")
 			wait(0.05)
-
-			local player = game.Players.LocalPlayer
-
-			for i,z in commontable do
-				print("common table")
-				local tool = v
-				if tool.Name == z then
-					print("tool")
-					tool:Destroy()
+			if v:IsA "Tool" then
+				for i,z in commontable do
+					if v.Name == z then
+						local tool = v
+						tool:Destroy()
 					end
 				end
 			end
 		end
-	game.Players.LocalPlayer.Backpack.ChildAdded:Connect(function(child)
-		print("Child added")
-		if getgenv().adcc then
-			
-				local player = game.Players.LocalPlayer
-				
-			for i,v in commontable do
-				print("common table ")
-					local tool = child
-				if tool.Name == v then
-					print("tool")
-				tool:Destroy()
-				    end
-				 end
-			  end
-		  end)
-	   end)
+	end
+ end)
 
 --[[tab:Slider("Slider",0,100,30, function(t)
 	print(t)
