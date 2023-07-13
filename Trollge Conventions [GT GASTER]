@@ -59,6 +59,7 @@ tab:Toggle("Safe Zone",false, function(t)
 	if getgenv().sz then
 		if game.Workspace:FindFirstChild("PC_SafeZone") == nil then
 			local safezonepart = Instance.new("Part")
+			safezonepart.Name = "PC_SafeZone"
 			safezonepart.Parent = workspace
 			safezonepart.Anchored = true
 			safezonepart.Position = Vector3.new(0, 100, 0)
@@ -70,6 +71,7 @@ tab:Toggle("Safe Zone",false, function(t)
 		else
 			game.Workspace:FindFirstChild("PC_SafeZone"):Destroy()
 			local safezonepart = Instance.new("Part")
+			safezonepart.Name = "PC_SafeZone"
 			safezonepart.Parent = workspace
 			safezonepart.Anchored = true
 			safezonepart.Position = Vector3.new(0, 100, 0)
