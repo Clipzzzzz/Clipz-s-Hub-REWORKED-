@@ -89,9 +89,9 @@ tab:Toggle("Auto Delete Common Chests",false, function(t)
 	getgenv().adcc = t
 	
 	local commontable = {
-		["Chest_p"] = "Chest_p",
-		["DarkChest_p"] = "Darkchest_p",
-		["FishChest_p"] = "FishChest_p"
+		["Chest"] = "common",
+		["Dark Chest"] = "common",
+		["Light Chest"] = "common"
 }
 	
 	if getgenv().adcc then
