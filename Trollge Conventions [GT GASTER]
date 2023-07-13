@@ -55,8 +55,10 @@ tab:Toggle("Auto Open Chests",false, function(t)
 				for i,z in chests do
 					if v.Name == z then
 				local tool = v
-				tool.Parent = game.Players.LocalPlayer.Character
-				tool:Activate()
+						tool.Parent = game.Players.LocalPlayer.Character
+						wait(0.05)
+						tool:Activate()
+						wait(0.05)
 						tool.Parent = game.Players.LocalPlayer.Backpack
 					end
 				end
@@ -172,7 +174,7 @@ tab3:Button("Testing Area", function()
 		safezonepart.Name = "PC_TestingArea"
 		safezonepart.Parent = workspace
 		safezonepart.Anchored = true
-		safezonepart.Position = Vector3.new(-38, -45, 119)
+		safezonepart.Position = Vector3.new(1511.9197998046875, 182.73626708984375, 2348.81591796875)
 		safezonepart.Transparency = 1
 			wait(0.5)
 			game:GetService "Players".LocalPlayer.Character:FindFirstChild "HumanoidRootPart".CFrame = safezonepart.CFrame	
@@ -182,7 +184,7 @@ tab3:Button("Testing Area", function()
 		safezonepart.Name = "PC_TestingArea"
 		safezonepart.Parent = workspace
 		safezonepart.Anchored = true
-		safezonepart.Position = Vector3.new(-38, -45, 119)
+		safezonepart.Position = Vector3.new(1511.9197998046875, 182.73626708984375, 2348.81591796875)
 		safezonepart.Transparency = 1
 			wait(0.5)
 			game:GetService "Players".LocalPlayer.Character:FindFirstChild "HumanoidRootPart".CFrame = safezonepart.CFrame
