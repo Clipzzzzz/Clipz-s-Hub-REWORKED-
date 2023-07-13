@@ -61,7 +61,8 @@ tab:Toggle("Safe Zone",false, function(t)
 			local safezonepart = Instance.new("Part")
 			safezonepart.Parent = workspace
 			safezonepart.Anchored = true
-			safezonepart.Position = Vector3.new(0, 200, 0)
+			safezonepart.Position = Vector3.new(0, 100, 0)
+			safezonepart.Size = Vector3.new(10, 1, 10)
 			while getgenv().sz do
 				wait(0.5)
 			game:GetService "Players".LocalPlayer.Character:FindFirstChild "HumanoidRootPart".CFrame = safezonepart.CFrame
@@ -71,7 +72,8 @@ tab:Toggle("Safe Zone",false, function(t)
 			local safezonepart = Instance.new("Part")
 			safezonepart.Parent = workspace
 			safezonepart.Anchored = true
-			safezonepart.Position = Vector3.new(0, 200, 0)
+			safezonepart.Position = Vector3.new(0, 100, 0)
+			safezonepart.Size = Vector3.new(10, 1, 10)
 			while getgenv().sz do
 				wait(0.5)
 				game:GetService "Players".LocalPlayer.Character:FindFirstChild "HumanoidRootPart".CFrame = safezonepart.CFrame
@@ -83,6 +85,7 @@ end)
 tab:Toggle("Auto Delete Common Chests",false, function(t)
 	print(t)
 	getgenv().adcc = t
+	
 	local commontable = {
 		["Chest_p"] = "common",
 		["DarkChest_p"] = "common",
@@ -95,27 +98,30 @@ tab:Toggle("Auto Delete Common Chests",false, function(t)
 
 			local player = game.Players.LocalPlayer
 
-			if table.find(commontable, v.Name) then
+			for i,z in commontable do
 				local tool = v
-				tool.Parent = player.Character
-				tool:Activate()
-				tool.Parent = player.Backpack
+				if tool.Name == z then
+					tool.Parent = player.Character
+					tool:Activate()
+					tool.Parent = player.Backpack
 			end
 		end
 		game.Players.LocalPlayer.Backpack.ChildAdded:Connect(function(child)
 			if getgenv().adcc then
 				local player = game.Players.LocalPlayer
 				
-				if table.find(commontable, child.Name) then
-				local tool = child
+				for i,v in commontable do
+					local tool = child
+					 if tool.Name == v then
 				tool.Parent = player.Character
 				tool:Activate()
-					tool.Parent = player.Backpack
-				end
-			end
-		end)
-	end	
-	
+						tool.Parent = player.Backpack
+				    end
+				 end
+			  end
+		  end)
+	   end	
+	end
 end)
 
 --[[tab:Slider("Slider",0,100,30, function(t)
