@@ -4,7 +4,8 @@ local win = lib:Window("Project Clipz",Color3.fromRGB(44, 120, 224), Enum.KeyCod
 
 local tab = win:Tab("Main")
 local tab2 = win:Tab("Player")
-local tab3 = win:Tab("Misc")
+local tab3 = win:Tab("Teleports")
+local tab4 = win:Tab("Misc")
 
 tab:Toggle("Auto Farm Chests",false, function(t)
 	print(t)
@@ -184,13 +185,17 @@ tab2:Button("Open Fly UI", function()
 	lib:Notification("Project Clipz", "This fly script isn't made by me, all credit goes to me_ozoneYT, just wanted to put it in here anyways.", "Noted")
 end)
 
+tab2:Button("Testing Area", function()
+	game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position = Vector3.new(-38, -45, 119) 
+end)
+
 --[[tab:Bind("Bind",Enum.KeyCode.RightShift, function()
 	print("Pressed!")
 end)]]
 
 --tab:Label("Label")
 
-tab3:Toggle("Chest ESP",false, function(t)
+tab4:Toggle("Chest ESP",false, function(t)
 	print(t)
 	
 	local chests = game.Workspace.chests:GetChildren()
@@ -237,12 +242,12 @@ tab3:Toggle("Chest ESP",false, function(t)
 	-- The variable (Value) is a boolean on whether the toggle is true or false
 end)
 
-tab3:Button("Destroy UI", function()
+tab4:Button("Destroy UI", function()
 	game:GetService("CoreGui").ui:Destroy()
 	lib:Notification("Project Clipz", "UI Destroyed, rexecute the loader to get it back.", "Noted")
 end)
 
-tab3:Colorpicker("Change UI Color",Color3.fromRGB(44, 120, 224), function(t)
+tab4:Colorpicker("Change UI Color",Color3.fromRGB(44, 120, 224), function(t)
 	lib:ChangePresetColor(Color3.fromRGB(t.R * 255, t.G * 255, t.B * 255))
 end)
 
