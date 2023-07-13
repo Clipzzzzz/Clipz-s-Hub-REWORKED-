@@ -13,29 +13,19 @@ end)]]
 
 tab:Toggle("Auto Farm Chests",false, function(t)
 	print(t)
-
-
-	if t == true then
-		for i,v in game.Workspace.chests:GetChildren() do
-
-			local player = game.Players.LocalPlayer
-
-			game.Workspace[player.Name]:SetPrimaryPartCFrame(v.CFrame) 
-
+	getgenv().afc = t
+	while getgenv().afc do
+		wait(0.05)
+		for _, v in pairs(game:GetService("Workspace").chests:GetChildren()) do
+			if v:IsA "Part" then
+				game:GetService "Players".LocalPlayer.Character:FindFirstChild "HumanoidRootPart".CFrame = v.CFrame
+			end
 			local chestprox = v:FindFirstChildOfClass("ProximityPrompt")
 			fireproximityprompt(chestprox)
+			-- The function that takes place when the toggle is pressed
+			-- The variable (Value) is a boolean on whether the toggle is true or false
 		end
-		game.Workspace.chests.ChildAdded:Connect(function(child)
-			if t ~= false then
-				local player = game.Players.LocalPlayer
-
-				game.Workspace[player.Name]:SetPrimaryPartCFrame(child.CFrame) 
-
-				local chestprox = child:FindFirstChildOfClass("ProximityPrompt")
-				fireproximityprompt(chestprox)
-			end
-		end)
-	end	
+	end
 end)
 
 tab:Toggle("Auto Open Chests",false, function(t)
