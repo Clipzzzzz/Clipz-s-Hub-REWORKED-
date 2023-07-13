@@ -13,6 +13,7 @@ tab:Toggle("Auto Farm Chests",false, function(t)
 		wait(0.05)
 		for _, v in pairs(game:GetService("Workspace").chests:GetChildren()) do
 			if v:IsA "Part" then
+				v.Anchored = false
 				game:GetService "Players".LocalPlayer.Character:FindFirstChild "HumanoidRootPart".CFrame = v.CFrame
 			end
 			local chestprox = v:FindFirstChildOfClass("ProximityPrompt")
@@ -27,14 +28,37 @@ tab:Toggle("Auto Open Chests",false, function(t)
 	print(t)
 	getgenv().aoc = t
 	
+	local chests = {
+		["Chest"] = "Chest",
+		["Dark Chest"] = "Dark Chest",
+		["Light Chest"] = "Light Chest",
+		["Fish Chest"] = "Fish Chest",
+		["Bone Chest"] = "Bone Chest",
+		["Trevor Chest"] = "Trevor Chest",
+		["Love Chest"] = "Love Chest",
+		["Giant Fish Chest"] = "Giant Fish Chest",
+		["Ink Chest"] = "Ink Chest",
+		["Undertale Chest"] = "Undertale Chest",
+		["Flesh Chest"] = "Flesh Chest",
+		["Earth Chest"] = "Earth Chest",
+		["106 Chest"] = "106 Chest",
+		["096 Chest"] = "096 Chest", 
+		["Troll 999 Chest"] = "Troll 999 Chest"
+	}
+	
 	while getgenv().aoc do
 		wait(0.05)
 		for i,v in game.Players.LocalPlayer.Backpack:GetChildren() do
+			wait(0.05)
 			if v:IsA "Tool" then
+				for i,z in chests do
+					if v.Name == z then
 				local tool = v
 				tool.Parent = game.Players.LocalPlayer.Character
 				tool:Activate()
-				tool.Parent = game.Players.LocalPlayer.Backpack
+						tool.Parent = game.Players.LocalPlayer.Backpack
+					end
+				end
 			end
 		end
 	end
@@ -70,6 +94,23 @@ tab:Toggle("Safe Zone",false, function(t)
 		end
 	end
 end)
+
+--[[tab:Toggle("Bypass ToolCooldown",false, function(t)
+	print(t)
+	getgenv().aoc = t
+
+	while getgenv().aoc do
+		wait(0.05)
+		for i,v in game.Players.LocalPlayer.Character:GetChildren() do
+			if v:IsA "Tool" then
+				local tool = v
+				tool.Parent = game.Players.LocalPlayer.Character
+				tool:Activate()
+				tool.Parent = game.Players.LocalPlayer.Backpack
+			end
+		end
+	end
+end)]]
 
 tab:Toggle("Auto Delete Common Chests",false, function(t)
 	print(t)
