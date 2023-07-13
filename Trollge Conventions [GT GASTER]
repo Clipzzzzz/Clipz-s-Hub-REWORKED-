@@ -173,18 +173,18 @@ function createtele(name, pos)
 	zonepart.Name = name
 	zonepart.Parent = workspace
 	zonepart.Anchored = true
-	zonepart.Position = Vector3.new(pos)
+	zonepart.Position = pos
 	zonepart.Transparency = 1
 end
 
 tab3:Button("Testing Area", function()
 	if game.Workspace:FindFirstChild("PC_TestingArea") == nil then
-		createtele("PC_TestingArea", "1511.9197998046875, 182.73626708984375, 2348.81591796875")
+		createtele("PC_TestingArea", Vector3.new(1511.9197998046875, 182.73626708984375, 2348.81591796875))
 			wait(0.5)
 		game:GetService "Players".LocalPlayer.Character:FindFirstChild "HumanoidRootPart".CFrame = game.Workspace:FindFirstChild("PC_TestingArea").CFrame	
 	else
 		game.Workspace:FindFirstChild("PC_TestingArea"):Destroy()
-		createtele("PC_TestingArea", "1511.9197998046875, 182.73626708984375, 2348.81591796875")
+		createtele("PC_TestingArea", Vector3.new(1511.9197998046875, 182.73626708984375, 2348.81591796875))
 			wait(0.5)
 		game:GetService "Players".LocalPlayer.Character:FindFirstChild "HumanoidRootPart".CFrame = game.Workspace:FindFirstChild("PC_TestingArea").CFrame	
 		end	
