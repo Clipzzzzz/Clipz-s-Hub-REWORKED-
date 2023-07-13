@@ -65,7 +65,7 @@ tab:Toggle("Safe Zone",false, function(t)
 			safezonepart.Size = Vector3.new(10, 1, 10)
 			while getgenv().sz do
 				wait(0.5)
-			game:GetService "Players".LocalPlayer.Character:FindFirstChild "HumanoidRootPart".CFrame = safezonepart.CFrame
+			game:GetService "Players".LocalPlayer.Character:FindFirstChild "HumanoidRootPart".CFrame = safezonepart.CFrame * 1.2
 			end	
 		else
 			game.Workspace:FindFirstChild("PC_SafeZone"):Destroy()
@@ -76,7 +76,7 @@ tab:Toggle("Safe Zone",false, function(t)
 			safezonepart.Size = Vector3.new(10, 1, 10)
 			while getgenv().sz do
 				wait(0.5)
-				game:GetService "Players".LocalPlayer.Character:FindFirstChild "HumanoidRootPart".CFrame = safezonepart.CFrame
+				game:GetService "Players".LocalPlayer.Character:FindFirstChild "HumanoidRootPart".CFrame = safezonepart.CFrame * 1.2
 			end	
 		end
 	end
@@ -87,9 +87,9 @@ tab:Toggle("Auto Delete Common Chests",false, function(t)
 	getgenv().adcc = t
 	
 	local commontable = {
-		["Chest_p"] = "common",
-		["DarkChest_p"] = "common",
-		["FishChest_p"] = "common"
+		["Chest_p"] = "Chest_p",
+		["DarkChest_p"] = "Darkchest_p",
+		["FishChest_p"] = "FishChest_p"
 }
 	
 	if getgenv().adcc then
@@ -101,9 +101,7 @@ tab:Toggle("Auto Delete Common Chests",false, function(t)
 			for i,z in commontable do
 				local tool = v
 				if tool.Name == z then
-					tool.Parent = player.Character
-					tool:Activate()
-					tool.Parent = player.Backpack
+					tool:Destroy()
 			end
 		end
 		game.Players.LocalPlayer.Backpack.ChildAdded:Connect(function(child)
@@ -113,9 +111,7 @@ tab:Toggle("Auto Delete Common Chests",false, function(t)
 				for i,v in commontable do
 					local tool = child
 					 if tool.Name == v then
-				tool.Parent = player.Character
-				tool:Activate()
-						tool.Parent = player.Backpack
+				tool:Destroy()
 				    end
 				 end
 			  end
