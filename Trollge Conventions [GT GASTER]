@@ -168,26 +168,25 @@ tab2:Button("Open Fly UI", function()
 	lib:Notification("Project Clipz", "This fly script isn't made by me, all credit goes to me_ozoneYT, just wanted to put it in here anyways.", "Noted")
 end)
 
+function createtele(name, pos)
+	local zonepart = Instance.new("Part")
+	zonepart.Name = name
+	zonepart.Parent = workspace
+	zonepart.Anchored = true
+	zonepart.Position = Vector3.new(pos)
+	zonepart.Transparency = 1
+end
+
 tab3:Button("Testing Area", function()
 	if game.Workspace:FindFirstChild("PC_TestingArea") == nil then
-		local safezonepart = Instance.new("Part")
-		safezonepart.Name = "PC_TestingArea"
-		safezonepart.Parent = workspace
-		safezonepart.Anchored = true
-		safezonepart.Position = Vector3.new(1511.9197998046875, 182.73626708984375, 2348.81591796875)
-		safezonepart.Transparency = 1
+		createtele("PC_TestingArea", "1511.9197998046875, 182.73626708984375, 2348.81591796875")
 			wait(0.5)
-			game:GetService "Players".LocalPlayer.Character:FindFirstChild "HumanoidRootPart".CFrame = safezonepart.CFrame	
+		game:GetService "Players".LocalPlayer.Character:FindFirstChild "HumanoidRootPart".CFrame = game.Workspace:FindFirstChild("PC_TestingArea").CFrame	
 	else
 		game.Workspace:FindFirstChild("PC_TestingArea"):Destroy()
-		local safezonepart = Instance.new("Part")
-		safezonepart.Name = "PC_TestingArea"
-		safezonepart.Parent = workspace
-		safezonepart.Anchored = true
-		safezonepart.Position = Vector3.new(1511.9197998046875, 182.73626708984375, 2348.81591796875)
-		safezonepart.Transparency = 1
+		createtele("PC_TestingArea", "1511.9197998046875, 182.73626708984375, 2348.81591796875")
 			wait(0.5)
-			game:GetService "Players".LocalPlayer.Character:FindFirstChild "HumanoidRootPart".CFrame = safezonepart.CFrame
+		game:GetService "Players".LocalPlayer.Character:FindFirstChild "HumanoidRootPart".CFrame = game.Workspace:FindFirstChild("PC_TestingArea").CFrame	
 		end	
 	end)
 
