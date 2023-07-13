@@ -185,7 +185,7 @@ tab2:Button("Open Fly UI", function()
 	lib:Notification("Project Clipz", "This fly script isn't made by me, all credit goes to me_ozoneYT, just wanted to put it in here anyways.", "Noted")
 end)
 
-tab2:Button("Testing Area", function()
+tab3:Button("Testing Area", function()
 	game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position = Vector3.new(-38, -45, 119) 
 end)
 
