@@ -254,11 +254,11 @@ tab:Toggle("Auto Delete Legendary Chests",false, function(t)
 	getgenv().adec = t
 
 	local raretable = {
-		["CentiChest-p"] = "CentiChest-p",
-		["Universe Chest-p"] = "Universe Chest-p",
-		["Darkness Chest-p"] = "Darkness Chest-p",
+		["Centi Chest"] = "Centi Chest",
+		["Universe Chest"] = "Universe Chest",
+		["Darkness Chest"] = "Darkness Chest",
 		["Drip Chest"] = "Drip Chest",
-		["OmniChest-p"] = "OmniChest-p"
+		["Omni Chest"] = "Omni Chest"
 	}
 
 	while getgenv().adec do
@@ -346,7 +346,7 @@ tab3:Button("Testing Area", function()
 end)
 
 tab3:Button("Secret Shop", function()
-	local zonename = "Secret Shop"
+	local zonename = "PC_SecretShop"
 	local position = Vector3.new(1212.3638916015625, -52.10298538208008, 130792.5078125)
 
 	if game.Workspace:FindFirstChild(zonename) == nil then
@@ -362,7 +362,7 @@ tab3:Button("Secret Shop", function()
 end)
 
 tab3:Button("Secret Shop Room", function()
-	local zonename = "Secret Shop Room"
+	local zonename = "PC_SecretShopRoom"
 	local position = Vector3.new(1287.11083984375, -52.10249710083008, 130821.7109375)
 
 	if game.Workspace:FindFirstChild(zonename) == nil then
