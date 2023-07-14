@@ -172,33 +172,6 @@ tab:Toggle("Auto Delete Rare Chests",false, function(t)
 	getgenv().adrc = t
 
 	local raretable = {
-		["Ink Chest"] = "Ink Chest",
-		["Trevor Chest"] = "Trevor Chest",
-		["Love Chest"] = "Love Chest",
-		["Giant Fish Chest-p"] = "Giant Fish Chest-p",
-	}
-
-	while getgenv().adrc do
-		wait(0.05)
-		for i,v in game.Players.LocalPlayer.Backpack:GetChildren() do
-			wait(0.05)
-			if v:IsA "Tool" then
-				for i,z in raretable do
-					if v.Name == z then
-						local tool = v
-						tool:Destroy()
-					end
-				end
-			end
-		end
-	end
-end)
-
-tab:Toggle("Auto Delete Rare Chests",false, function(t)
-	print(t)
-	getgenv().adrc = t
-
-	local raretable = {
 		["Ink Chest-p"] = "Ink Chest-p",
 		["Trevor Chest-p"] = "Trevor Chest-p",
 		["Love Chest-p"] = "Love Chest-p",
@@ -251,7 +224,7 @@ end)
 
 tab:Toggle("Auto Delete Legendary Chests",false, function(t)
 	print(t)
-	getgenv().adec = t
+	getgenv().adlc = t
 
 	local raretable = {
 		["Centi Chest"] = "Centi Chest",
@@ -261,7 +234,7 @@ tab:Toggle("Auto Delete Legendary Chests",false, function(t)
 		["Omni Chest"] = "Omni Chest"
 	}
 
-	while getgenv().adec do
+	while getgenv().adlc do
 		wait(0.05)
 		for i,v in game.Players.LocalPlayer.Backpack:GetChildren() do
 			wait(0.05)
