@@ -53,15 +53,13 @@ tab:Toggle("Auto Open Chests",false, function(t)
 	for _, v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
 			wait(0.05)
 			if v:IsA "Tool" then
-				for i,z in chests do
-					if v.Name == z then
+				if table.find(chests, v.Name) then
 						local tool = v
 						tool.Parent = game.Players.LocalPlayer.Character
 						wait(0.05)
 						tool:Activate()
 						wait(0.05)
 						tool.Parent = game.Players.LocalPlayer.Backpack
-					end
 				end
 			end
 		end
