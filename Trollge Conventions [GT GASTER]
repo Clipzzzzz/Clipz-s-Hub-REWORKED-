@@ -291,7 +291,7 @@ end)]]
 
 local range = 20
 
-tab:Toggle("Kill Aura",false, function(t)
+tab2:Toggle("Kill Aura",false, function(t)
 	print(t)
 	getgenv().ka = t
 	local player = game:GetService("Players").LocalPlayer
@@ -320,7 +320,7 @@ end)
 
 tab2:Textbox("Kill Aura Range",true, function(t)
 	print(t)
-	range = t
+	range = tonumber(t)
 end)
 
 tab2:Textbox("WalkSpeed",true, function(t)
