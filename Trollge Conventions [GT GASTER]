@@ -10,7 +10,7 @@ local tab4 = win:Tab("Misc")
 tab:Toggle("Auto Farm Chests",false, function(t)
 	print(t)
 	getgenv().afc = t
-	while getgenv().afc == true do
+	while getgenv().afc do
 		wait(0.05)
 		for _, v in pairs(game:GetService("Workspace").chests:GetChildren()) do
 			if v:IsA "Part" then
@@ -48,18 +48,20 @@ tab:Toggle("Auto Open Chests",false, function(t)
 	}
 	
 	
-	while getgenv().aoc == true do
+	while getgenv().aoc do
 		wait(0.05)
 	for _, v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
 			wait(0.05)
 			if v:IsA "Tool" then
-				if table.find(chests, v.Name) then
+				for i,z in chests do
+					if v.Name == z then
 						local tool = v
 						tool.Parent = game.Players.LocalPlayer.Character
 						wait(0.05)
 						tool:Activate()
 						wait(0.05)
 						tool.Parent = game.Players.LocalPlayer.Backpack
+					end
 				end
 			end
 		end
@@ -69,7 +71,7 @@ end)
 tab:Toggle("Safe Zone",false, function(t)
 	print(t)
 	getgenv().sz = t
-	if getgenv().sz == true then
+	if getgenv().sz then
 		if game.Workspace:FindFirstChild("PC_SafeZone") == nil then
 			local safezonepart = Instance.new("Part")
 			safezonepart.Name = "PC_SafeZone"
@@ -124,7 +126,7 @@ tab:Toggle("Auto Delete Common Chests",false, function(t)
 		["Fish Chest"] = "Fish Chest"
 	}
 
-	while getgenv().adcc == true do
+	while getgenv().adcc do
 		wait(0.05)
 		for i,v in game.Players.LocalPlayer.Backpack:GetChildren() do
 			wait(0.05)
@@ -150,7 +152,7 @@ tab:Toggle("Auto Delete Uncommon Chests",false, function(t)
 		["Bone Chest"] = "Bone Chest"
 	}
 
-	while getgenv().aduc == true do
+	while getgenv().aduc do
 		wait(0.05)
 		for i,v in game.Players.LocalPlayer.Backpack:GetChildren() do
 			wait(0.05)
@@ -177,7 +179,7 @@ tab:Toggle("Auto Delete Rare Chests",false, function(t)
 		["Giant Fish Chest"] = "Giant Fish Chest",
 	}
 
-	while getgenv().adrc == true do
+	while getgenv().adrc do
 		wait(0.05)
 		for i,v in game.Players.LocalPlayer.Backpack:GetChildren() do
 			wait(0.05)
@@ -205,7 +207,7 @@ tab:Toggle("Auto Delete Epic Chests",false, function(t)
 		["096 Chest"] = "096 Chest", 
 	}
 
-	while getgenv().adec == true do
+	while getgenv().adec do
 		wait(0.05)
 		for i,v in game.Players.LocalPlayer.Backpack:GetChildren() do
 			wait(0.05)
@@ -233,7 +235,7 @@ tab:Toggle("Auto Delete Legendary Chests",false, function(t)
 		["Omni Chest"] = "Omni Chest"
 	}
 
-	while getgenv().adlc == true do
+	while getgenv().adlc do
 		wait(0.05)
 		for i,v in game.Players.LocalPlayer.Backpack:GetChildren() do
 			wait(0.05)
@@ -446,7 +448,7 @@ tab4:Toggle("Anti AFK",false, function(t)
 	
 	local VU = game:GetService("VirtualUser")
 	game.Players.LocalPlayer.Idled:Connect(function()
-	if getgenv().anti == true then
+	if getgenv().anti then
 			VU:CaptureController()VU:ClickButton2(Vector2.new())
 		end
 	end)
