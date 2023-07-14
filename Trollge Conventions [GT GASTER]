@@ -62,7 +62,6 @@ tab:Toggle("Auto Open Chests",false, function(t)
 						tool:Activate()
 						wait(0.05)
 						tool.Parent = game.Players.LocalPlayer.Backpack
-						return
 					end
 				end
 			end
