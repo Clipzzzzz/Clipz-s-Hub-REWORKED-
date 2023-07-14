@@ -46,7 +46,8 @@ tab:Toggle("Auto Open Chests",false, function(t)
 		["096 Chest"] = "096 Chest", 
 		["Troll 999 Chest"] = "Troll 999 Chest"
 	}
-
+	
+	coroutine.wrap(function()
 	while getgenv().aoc do
 		wait(0.05)
 	for _, v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
@@ -61,10 +62,11 @@ tab:Toggle("Auto Open Chests",false, function(t)
 						wait(0.05)
 						tool.Parent = game.Players.LocalPlayer.Backpack
 					end
-				end
-			end
-		end
-	end
+				 end
+			  end
+	       end
+	    end
+	end)()	
 end)	
 
 tab:Toggle("Safe Zone",false, function(t)
