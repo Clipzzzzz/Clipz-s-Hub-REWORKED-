@@ -21,14 +21,14 @@ tab:Toggle("Auto Farm Chests",false, function(t)
 			fireproximityprompt(chestprox)
 			-- The function that takes place when the toggle is pressed
 			-- The variable (Value) is a boolean on whether the toggle is true or false
-			end
 		end
-	end)
+	end
+end)
 
 tab:Toggle("Auto Open Chests",false, function(t)
 	print(t)
 	getgenv().aoc = t
-	
+
 	local chests = {
 		["Chest"] = "Chest",
 		["Dark Chest"] = "Dark Chest",
@@ -46,7 +46,7 @@ tab:Toggle("Auto Open Chests",false, function(t)
 		["096 Chest"] = "096 Chest", 
 		["Troll 999 Chest"] = "Troll 999 Chest"
 	}
-	
+
 	while getgenv().aoc do
 		wait(0.05)
 		for i,v in game.Players.LocalPlayer.Backpack:GetChildren() do
@@ -54,7 +54,7 @@ tab:Toggle("Auto Open Chests",false, function(t)
 			if v:IsA "Tool" then
 				for i,z in chests do
 					if v.Name == z then
-				local tool = v
+						local tool = v
 						tool.Parent = game.Players.LocalPlayer.Character
 						wait(0.05)
 						tool:Activate()
@@ -118,13 +118,13 @@ end)]]
 tab:Toggle("Auto Delete Common Chests",false, function(t)
 	print(t)
 	getgenv().adcc = t
-	
+
 	local commontable = {
 		["Chest"] = "Chest",
 		["Dark Chest"] = "Dark Chest",
 		["Fish Chest"] = "Fish Chest"
-}
-	
+	}
+
 	while getgenv().adcc do
 		wait(0.05)
 		for i,v in game.Players.LocalPlayer.Backpack:GetChildren() do
@@ -146,9 +146,9 @@ tab:Toggle("Auto Delete Uncommon Chests",false, function(t)
 	getgenv().aduc = t
 
 	local uncommontable = {
-		["Undertale Chest_p"] = "Undertale Chest_p",
-		["LightChest_p"] = "LightChest_p",
-		["Bone Chest-p"] = "Bone Chest-p"
+		["Undertale Chest"] = "Undertale Chest",
+		["Light Chest"] = "Light Chest",
+		["Bone Chest"] = "Bone Chest"
 	}
 
 	while getgenv().aduc do
@@ -172,9 +172,9 @@ tab:Toggle("Auto Delete Rare Chests",false, function(t)
 	getgenv().adrc = t
 
 	local raretable = {
-		["Ink Chest-p"] = "Ink Chest-p",
-		["Trevor Chest-p"] = "Trevor Chest-p",
-		["Love Chest-p"] = "Love Chest-p",
+		["Ink Chest"] = "Ink Chest",
+		["Trevor Chest"] = "Trevor Chest",
+		["Love Chest"] = "Love Chest",
 		["Giant Fish Chest-p"] = "Giant Fish Chest-p",
 	}
 
@@ -202,7 +202,7 @@ tab:Toggle("Auto Delete Rare Chests",false, function(t)
 		["Ink Chest-p"] = "Ink Chest-p",
 		["Trevor Chest-p"] = "Trevor Chest-p",
 		["Love Chest-p"] = "Love Chest-p",
-		["Giant Fish Chest-p"] = "Giant Fish Chest-p",
+		["Giant Fish Chest"] = "Giant Fish Chest",
 	}
 
 	while getgenv().adrc do
@@ -226,11 +226,11 @@ tab:Toggle("Auto Delete Epic Chests",false, function(t)
 	getgenv().adec = t
 
 	local raretable = {
-		["Flesh Chest-p"] = "Flesh Chest-p",
-		["106 Chest-p"] = "106 Chest-p",
-		["Troll-999 Chest-p"] = "Troll-999 Chest-p",
-		["Earth Chest-p"] = "Earth Chest-p",
-		["096 Chest-p"] = "096 Chest-p"
+		["Flesh Chest"] = "Flesh Chest",
+		["106 Chest"] = "106 Chest",
+		["Troll 999 Chest"] = "Troll 999 Chest",
+		["Earth Chest"] = "Earth Chest",
+		["096 Chest"] = "096 Chest", 
 	}
 
 	while getgenv().adec do
@@ -316,7 +316,7 @@ end
 tab3:Button("Arena", function()
 	local zonename = "PC_Arena"
 	local position = Vector3.new(-85.92035675048828, -42.6500129699707, -91.29226684570312)
-	
+
 	if game.Workspace:FindFirstChild(zonename) == nil then
 		createtele(zonename, position)
 		wait(0.5)
@@ -345,6 +345,43 @@ tab3:Button("Testing Area", function()
 	end		
 end)
 
+tab3:Button("Secret Shop", function()
+	local zonename = "Secret Shop"
+	local position = Vector3.new(1212.3638916015625, -52.10298538208008, 130792.5078125)
+
+	if game.Workspace:FindFirstChild(zonename) == nil then
+		createtele(zonename, position)
+		wait(0.5)
+		game:GetService "Players".LocalPlayer.Character:FindFirstChild "HumanoidRootPart".CFrame = game.Workspace:FindFirstChild(zonename).CFrame	
+	else
+		game.Workspace:FindFirstChild(zonename):Destroy()
+		createtele(zonename, position)
+		wait(0.5)
+		game:GetService "Players".LocalPlayer.Character:FindFirstChild "HumanoidRootPart".CFrame = game.Workspace:FindFirstChild(zonename).CFrame	
+	end	
+end)
+
+tab3:Button("Secret Shop Room", function()
+	local zonename = "Secret Shop Room"
+	local position = Vector3.new(1287.11083984375, -52.10249710083008, 130821.7109375)
+
+	if game.Workspace:FindFirstChild(zonename) == nil then
+		createtele(zonename, position)
+		for i,v in game.Workspace.Shop.Room:GetChildren() do
+			if v.Name == "Anti Cheat" then
+				v:Destroy()
+			end
+		end
+		wait(0.5)
+		game:GetService "Players".LocalPlayer.Character:FindFirstChild "HumanoidRootPart".CFrame = game.Workspace:FindFirstChild(zonename).CFrame	
+	else
+		game.Workspace:FindFirstChild(zonename):Destroy()
+		createtele(zonename, position)
+		wait(0.5)
+		game:GetService "Players".LocalPlayer.Character:FindFirstChild "HumanoidRootPart".CFrame = game.Workspace:FindFirstChild(zonename).CFrame	
+	end	
+end)
+
 
 --[[tab:Bind("Bind",Enum.KeyCode.RightShift, function()
 	print("Pressed!")
@@ -354,12 +391,12 @@ end)]]
 
 tab4:Toggle("Chest ESP",false, function(t)
 	print(t)
-	
+
 	local chests = game.Workspace.chests:GetChildren()
 	local RunService = game:GetService("RunService")
 	local hightlight = Instance.new("Highlight")
 	hightlight.Name = "Highlight"
-	
+
 	for i, v in pairs(chests) do
 		if v:FindFirstChild("Highlight") == nil and t == true then
 			local highlightclone = hightlight:Clone()
@@ -387,7 +424,7 @@ tab4:Toggle("Chest ESP",false, function(t)
 	game.Workspace.chests.ChildRemoved:Connect(function(chest)
 		chest:FindFirstChild("Highlight"):Destroy()
 	end)
-	
+
 	if t == false then
 		for i, v in pairs(chests) do
 			if v:FindFirstChild("Highlight") ~= nil then
