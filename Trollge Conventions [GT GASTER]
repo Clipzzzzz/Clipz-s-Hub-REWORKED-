@@ -49,7 +49,7 @@ tab:Toggle("Auto Open Chests",false, function(t)
 
 	while getgenv().aoc do
 		wait(0.05)
-		for i,v in game.Players.LocalPlayer.Backpack:GetChildren() do
+	for _, v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
 			wait(0.05)
 			if v:IsA "Tool" then
 				for i,z in chests do
