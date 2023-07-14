@@ -52,6 +52,7 @@ tab:Toggle("Auto Open Chests",false, function(t)
 		wait(0.05)
 	for _, v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
 			wait(0.05)
+			if getgenv().aoc == false then return end
 			if v:IsA "Tool" then
 				for i,z in chests do
 					if v.Name == z then
@@ -61,6 +62,7 @@ tab:Toggle("Auto Open Chests",false, function(t)
 						tool:Activate()
 						wait(0.05)
 						tool.Parent = game.Players.LocalPlayer.Backpack
+						return
 					end
 				end
 			end
