@@ -456,6 +456,83 @@ tab4:Toggle("Anti AFK",false, function(t)
 	end)
 end)
 
+local gooditems = {"Shadow Cup", "Nightmare Cup", "THE HAPPINESS", "War Blood", "Mysterious Door", "Monarch", "Voices", "Ruler Cup"}
+
+tab4:Toggle("Item Alerts (UI Notification)",false, function(t)
+	print(t)
+	getgenv().alertui = t
+
+	while getgenv().alertui do
+		wait(0.05)
+		for i,v in game:GetService("Players").LocalPlayer.Backpack:GetChildren() do
+			if getgenv().alertui == false then return end
+			if v:IsA "Tool" then
+				if table.find(gooditems, v.Name) and v:FindFirstChild("Seen") == nil then
+					local tag = Instance.new("BoolValue")
+					tag.Name = "Seen"
+					tag.Parent = v
+					lib:Notification("Project Clipz [Rare Item Alert]", "You obtained "..v.Name, "Noted")	
+				end
+			end
+		end
+	end
+end)
+
+local webhook = ""
+
+local function alertdiscord(item)
+		local url = webhook
+		local data = {
+			["content"] = "",
+			["embeds"] = {
+				{
+					["title"] = "**Project Clipz [Rare Item Alert]**",
+					["description"] = "You obtained "..tostring(item),
+					["type"] = "rich",
+					["color"] = tonumber(0),
+					["image"] = {
+						["url"] = "http://www.roblox.com/Thumbs/Avatar.ashx?x=150&y=150&Format=Png&username=" ..
+							tostring(game:GetService("Players").LocalPlayer.Name)
+					}
+				}
+			}
+		}
+		local newdata = game:GetService("HttpService"):JSONEncode(data)
+
+		local headers = {
+			["content-type"] = "application/json"
+		}
+
+		local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
+		request(abcdef)
+end
+
+tab4:Toggle("Item Alerts (Discord Notification)",false, function(t)
+	print(t)
+	getgenv().alertdsc = t
+
+	while getgenv().alertdsc do
+		wait(0.05)
+		for i,v in game:GetService("Players").LocalPlayer.Backpack:GetChildren() do
+			if getgenv().alertdsc == false then return end
+			if v:IsA "Tool" then
+				if table.find(gooditems, v.Name) and v:FindFirstChild("Seen") == nil then
+					local tag = Instance.new("BoolValue")
+					tag.Name = "Seen"
+					tag.Parent = v
+					alertdiscord(v.Name)
+				end
+			end
+		end
+	end
+end)
+
+tab2:Textbox("Webhook",true, function(t)
+	print(t)
+	webhook = t
+end)
+
+
 tab4:Button("Rejoin", function()
 	game:GetService("TeleportService"):Teleport(game.PlaceId)
 end)
@@ -482,3 +559,5 @@ tab4:Colorpicker("Change UI Color",Color3.fromRGB(44, 120, 224), function(t)
 end)
 
 lib:Notification("Project Clipz", "Thank you for using Project Clipz! [Support: [https://dsc.gg/projectc]", "Noted")
+wait(3)
+lib:Notification("Project Clipz", "There's item alerts located in the 'misc' tab, you can go to the github page to find an explanation on how to use them.", "Noted")
