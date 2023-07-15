@@ -109,9 +109,7 @@ tab:Toggle("Auto Delete Useless Items",false, function(t)
 	while getgenv().useless do
 		wait(0.05)
 		for _, v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
-			wait(0.05)
 			if getgenv().useless == false then return end
-				wait(0.05)
 				if v:IsA "Tool" then
 				if table.find(items, v.Name) then
 							local tool = v
