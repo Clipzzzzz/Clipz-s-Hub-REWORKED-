@@ -456,7 +456,7 @@ tab4:Toggle("Anti AFK",false, function(t)
 	end)
 end)
 
-local gooditems = {"Shadow Cup", "Nightmare Cup", "THE HAPPINESS", "War Blood", "Mysterious Door", "Monarch", "Voices", "Ruler Cup"}
+local gooditems = {"Shadow Cup", "Nightmare Cup", "THE HAPPINESS", "War Blood", "Mysterious Door", "Monarch", "Voices", "Ruler Cup", "Blood Cup"}
 
 tab4:Toggle("Item Alerts (UI Notification)",false, function(t)
 	print(t)
