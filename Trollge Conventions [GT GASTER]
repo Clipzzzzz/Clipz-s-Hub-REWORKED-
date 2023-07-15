@@ -29,23 +29,7 @@ tab:Toggle("Auto Open Chests",false, function(t)
 	print(t)
 	getgenv().aoc = t
 
-	local chests = {
-		["Chest"] = "Chest",
-		["Dark Chest"] = "Dark Chest",
-		["Light Chest"] = "Light Chest",
-		["Fish Chest"] = "Fish Chest",
-		["Bone Chest"] = "Bone Chest",
-		["Trevor Chest"] = "Trevor Chest",
-		["Love Chest"] = "Love Chest",
-		["Giant Fish Chest"] = "Giant Fish Chest",
-		["Ink Chest"] = "Ink Chest",
-		["Undertale Chest"] = "Undertale Chest",
-		["Flesh Chest"] = "Flesh Chest",
-		["Earth Chest"] = "Earth Chest",
-		["106 Chest"] = "106 Chest",
-		["096 Chest"] = "096 Chest", 
-		["Troll 999 Chest"] = "Troll 999 Chest"
-	}
+	local chests = {"Chest", "Dark Chest", "Light Chest", "Fish Chest", "Bone Chest", "Trevor Chest", "Love Chest", "Giant Fish Chest", "Ink Chest", "Undertale Chest", "Flesh Chest", "Earth Chest", "106 Chest", "096 Chest", "Troll 999 Chest"}
 
 
 	while getgenv().aoc do
@@ -53,16 +37,13 @@ tab:Toggle("Auto Open Chests",false, function(t)
 		for _, v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
 			wait(0.05)
 			if getgenv().aoc == false then return end
-			for i,z in chests do
-				if v:IsA "Tool" and v.Name == z then
+			if table.find(chests, v.Name) then
 					local tool = v
 					tool.Parent = game.Players.LocalPlayer.Character
 					wait(0.05)
 					tool:Activate()
 					wait(0.05)
 					tool.Parent = game.Players.LocalPlayer.Backpack
-
-				end
 			end
 		end
 	end
