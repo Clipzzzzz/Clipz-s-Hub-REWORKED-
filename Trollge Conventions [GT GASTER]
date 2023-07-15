@@ -99,6 +99,29 @@ tab:Toggle("Safe Zone",false, function(t)
 	end
 end)
 
+tab:Toggle("Auto Delete Useless Items",false, function(t)
+	print(t)
+	getgenv().useless = t
+
+	local items = {"Oil Cup", "Blood Cup", "Acid Cup", "Love Cup", "Light Cup", "Fish", "Mega Fish Bait"}
+
+
+	while getgenv().useless do
+		wait(0.05)
+		for _, v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
+			wait(0.05)
+			if getgenv().useless == false then return end
+				wait(0.05)
+				if v:IsA "Tool" then
+				if table.find(items, v.Name) then
+							local tool = v
+						tool:Destroy()
+				end
+			end
+		end
+	end
+end)
+
 --[[tab:Toggle("Bypass ToolCooldown",false, function(t)
 	print(t)
 	getgenv().aoc = t
