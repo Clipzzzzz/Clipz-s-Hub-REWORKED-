@@ -464,7 +464,7 @@ tab4:Toggle("Item Alerts (UI Notification)",false, function(t)
 
 	while getgenv().alertui do
 		wait(0.05)
-		for i,v in game:GetService("Players").LocalPlayer.Backpack:GetChildren() do
+		for _, v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
 			if getgenv().alertui == false then return end
 				if table.find(gooditems, v.Name) and v:FindFirstChild("SeenA") == nil then
 					local tag = Instance.new("BoolValue")
@@ -488,7 +488,7 @@ local webhook = ""
 local function alertdiscord(item)
 		local url = webhook
 		local data = {
-			["content"] = "<@everyone>",
+			["content"] = "||@everyone||",
 			["embeds"] = {
 				{
 					["title"] = "**Project Clipz [Rare Item Alert]**",
@@ -496,7 +496,7 @@ local function alertdiscord(item)
 					["type"] = "rich",
 					["color"] = tonumber(0),
 					["image"] = {
-						["url"] = "http://www.roblox.com/Thumbs/Avatar.ashx?x=150&y=150&Format=Png&username=" ..
+					["url"] = "https://cdn.discordapp.com/attachments/1122863693730951269/1129945614008983563/Project_Clipz_Blue.png" ..
 							tostring(game:GetService("Players").LocalPlayer.Name)
 					}
 				}
@@ -512,13 +512,19 @@ local function alertdiscord(item)
 		request(abcdef)
 end
 
+tab4:Textbox("Webhook",true, function(t)
+	print(t)
+	webhook = t
+end)
+
 tab4:Toggle("Item Alerts (Discord Notification)",false, function(t)
 	print(t)
 	getgenv().alertdsc = t
 
 	while getgenv().alertdsc do
 		wait(0.05)
-		for i,v in game:GetService("Players").LocalPlayer.Backpack:GetChildren() do
+		if webhook == "" then lib:Notification("Project Clipz", "Please enter a webhook first!", "Noted") return end
+		for _, v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
 			if getgenv().alertdsc == false then return end
 			if v:IsA "Tool" then
 				if table.find(gooditems, v.Name) and v:FindFirstChild("SeenB") == nil then
@@ -531,12 +537,6 @@ tab4:Toggle("Item Alerts (Discord Notification)",false, function(t)
 		end
 	end
 end)
-
-tab2:Textbox("Webhook",true, function(t)
-	print(t)
-	webhook = t
-end)
-
 
 tab4:Button("Rejoin", function()
 	game:GetService("TeleportService"):Teleport(game.PlaceId)
