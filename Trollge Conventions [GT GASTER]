@@ -466,13 +466,18 @@ tab4:Toggle("Item Alerts (UI Notification)",false, function(t)
 		wait(0.05)
 		for i,v in game:GetService("Players").LocalPlayer.Backpack:GetChildren() do
 			if getgenv().alertui == false then return end
-			if v:IsA "Tool" then
-				if table.find(gooditems, v.Name) and v:FindFirstChild("Seen") == nil then
+				if table.find(gooditems, v.Name) and v:FindFirstChild("SeenA") == nil then
 					local tag = Instance.new("BoolValue")
-					tag.Name = "Seen"
+					tag.Name = "SeenA"
 					tag.Parent = v
 					lib:Notification("Project Clipz [Rare Item Alert]", "You obtained "..v.Name, "Noted")	
-				end
+					local sound = Instance.new("Sound")
+					sound.Parent = workspace
+				    sound.SoundId = 333638961
+				    sound.Volume = 1
+				sound:Play()
+				sound.Ended:Wait()
+				sound:Destroy()
 			end
 		end
 	end
@@ -483,7 +488,7 @@ local webhook = ""
 local function alertdiscord(item)
 		local url = webhook
 		local data = {
-			["content"] = "",
+			["content"] = "<@everyone>",
 			["embeds"] = {
 				{
 					["title"] = "**Project Clipz [Rare Item Alert]**",
@@ -516,9 +521,9 @@ tab4:Toggle("Item Alerts (Discord Notification)",false, function(t)
 		for i,v in game:GetService("Players").LocalPlayer.Backpack:GetChildren() do
 			if getgenv().alertdsc == false then return end
 			if v:IsA "Tool" then
-				if table.find(gooditems, v.Name) and v:FindFirstChild("Seen") == nil then
+				if table.find(gooditems, v.Name) and v:FindFirstChild("SeenB") == nil then
 					local tag = Instance.new("BoolValue")
-					tag.Name = "Seen"
+					tag.Name = "SeenB"
 					tag.Parent = v
 					alertdiscord(v.Name)
 				end
