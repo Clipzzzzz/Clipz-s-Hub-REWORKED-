@@ -1,1 +1,204 @@
 --[[ Currently not done, but I am working on it! ]]
+
+local lib = loadstring(game:HttpGet"https://raw.githubusercontent.com/dawid-scripts/UI-Libs/main/Vape.txt")()
+
+local win = lib:Window("Project Clipz",Color3.fromRGB(44, 120, 224), Enum.KeyCode.RightControl)
+
+local tab = win:Tab("Main")
+local tab2 = win:Tab("Player")
+local tab3 = win:Tab("Misc")
+
+
+--[[tab:Button("Button", function()
+	lib:Notification("Notification", "Hello!", "Hi!")
+end)]]
+
+tab:Toggle("Auto Collect Supply Drops",false, function(t)	
+	while t do
+		for i,v in game.Workspace.Airdrops:GetChildren() do
+			if t == true and v.Center:FindFirstChild("Fuse") == nil then
+				local player = game.Players.LocalPlayer
+				local prox = v:FindFirstChildOfClass("ProximityPrompt")
+				local VirtualInputManager = game:GetService("VirtualInputManager")
+				
+				v.Position = player
+				VirtualInputManager:SendKeyEvent(true,prox.KeyboardKeyCode,false,game)
+		--[[
+			 
+		game.Workspace[player.Name]:SetPrimaryPartCFrame(v.CFrame) 
+
+				prox.MaxActivationDistance = 50000000
+				fireproximityprompt(prox)]]
+			end
+		end
+	end
+end)
+
+tab:Toggle("Aimbot",false, function(t)	
+	local range = 5000
+	
+	while t do
+		local enemies = game.Workspace.Enemies:GetChildren()
+		local player = game.Players.LocalPlayer
+		for i = 2, #enemies do local v = enemies[i]
+			if v and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and v:FindFirstChild("HumanoidRootPart") and player:DistanceFromCharacter(v.HumanoidRootPart.Position) <= range then
+
+				local targetPosition = v.Position
+				local lookVector = (targetPosition - player.Character:WaitForChild("HumanoidRootPart").Position).Unit
+				
+				game.Workspace.CurrentCamera.CameraType = Enum.CameraType.Follow
+				player.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.lookAt(player.Character:WaitForChild("HumanoidRootPart").Position, player.Character:WaitForChild("HumanoidRootPart").Position + lookVector)
+			end
+		end
+	end
+	
+	if t == false then
+		game.Workspace.CurrentCamera.CameraType = Enum.CameraType.Custom
+	end	
+end)
+
+local range = 20
+
+tab:Toggle("Kill Aura",false, function(t)	
+	local player = game:GetService("Players").LocalPlayer
+
+	game:GetService("RunService").RenderStepped:Connect(function()
+		if t == true then
+			local enemies = game.Workspace.Enemies:GetChildren()
+			for i = 2, #enemies do local v = enemies[i]
+				if v and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and v:FindFirstChild("HumanoidRootPart") and player:DistanceFromCharacter(v.HumanoidRootPart.Position) <= range then
+					local tool = player.Character and player.Character:FindFirstChildOfClass("Tool")
+					if tool and tool:FindFirstChild("Handle") then
+						tool:Activate()
+						for i,v in next, v:GetChildren() do
+							if v:IsA("BasePart") then
+								firetouchinterest(tool.Handle,v,0)
+								firetouchinterest(tool.Handle,v,1)
+							end
+						end
+					end
+				end
+			end
+		end
+	end)
+end)
+
+local fte_asz = false
+tab:Toggle("Auto Safe Zone",false, function(t)
+	print(t)
+	
+	if fte_asz == false then
+		lib:Notification("Project Clipz", "You'll now automatically TP to a safe place when you are below 25 HP!", "Noted")
+		fte_asz = true
+	end
+	
+	while t do
+		wait(0.5)
+		if game.Workspace:FindFirstChild("PC_SafeZone") == nil then
+			local safezonepart = Instance.new("Part")
+			safezonepart.Name = "PC_SafeZone"
+			safezonepart.Parent = workspace
+			safezonepart.Anchored = true
+			safezonepart.Position = Vector3.new(0, 120, 0)
+			safezonepart.Size = Vector3.new(10, 1, 10)
+		end
+		if game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Health >= 25 then
+		local safezonepart = workspace:WaitForChild("PC_SafeZone")
+			game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame = safezonepart.CFrame + Vector3.new(safezonepart.Position.X, 5, safezonepart.Position.Z)	
+		safezonepart.Position = Vector3.new(50, 120, 0)
+		wait(3)
+			safezonepart.Position = Vector3.new(0, 120, 50)
+		end
+	end
+end)
+
+tab2:Textbox("Kill Aura Range",true, function(t)
+	print(t)
+	range = tonumber(t)
+end)
+
+tab2:Textbox("WalkSpeed",true, function(t)
+	print(t)
+	game.Players.LocalPlayer.Character:WaitForChild("Humanoid").WalkSpeed = t
+end)
+
+tab2:Textbox("JumpPower",true, function(t)
+	print(t)
+	game.Players.LocalPlayer.Character:WaitForChild("Humanoid").JumpPower = t
+end)
+
+tab2:Button("Open Fly UI", function()
+	loadstring("\108\111\97\100\115\116\114\105\110\103\40\103\97\109\101\58\72\116\116\112\71\101\116\40\40\39\104\116\116\112\115\58\47\47\103\105\115\116\46\103\105\116\104\117\98\117\115\101\114\99\111\110\116\101\110\116\46\99\111\109\47\109\101\111\122\111\110\101\89\84\47\98\102\48\51\55\100\102\102\57\102\48\97\55\48\48\49\55\51\48\52\100\100\100\54\55\102\100\99\100\51\55\48\47\114\97\119\47\101\49\52\101\55\52\102\52\50\53\98\48\54\48\100\102\53\50\51\51\52\51\99\102\51\48\98\55\56\55\48\55\52\101\98\51\99\53\100\50\47\97\114\99\101\117\115\37\50\53\50\48\120\37\50\53\50\48\102\108\121\37\50\53\50\48\50\37\50\53\50\48\111\98\102\108\117\99\97\116\111\114\39\41\44\116\114\117\101\41\41\40\41\10\10")()
+	lib:Notification("Project Clipz", "This fly script isn't made by me, all credit goes to me_ozoneYT, just wanted to put it in here anyways.", "Noted")
+end)
+
+--[[tab:Slider("Slider",0,100,30, function(t)
+	print(t)
+end)]]
+
+--[[tab:Dropdown("Dropdown",{"Option 1","Option 2","Option 3","Option 4","Option 5"}, function(t)
+	print(t)
+end)]]
+
+--[[tab3:Colorpicker("Colorpicker",Color3.fromRGB(255, 255, 255), function(t)
+	print(t)
+end)]]
+
+--[[tab:Bind("Bind",Enum.KeyCode.RightShift, function()
+	print("Pressed!")
+end)]]
+
+--tab:Label("Label")
+
+tab3:Toggle("Enemy ESP",false, function(t)
+	print(t)
+
+	local function highlight(object, primcolor, secocolor)
+		local hightlight = Instance.new("Highlight")
+		hightlight.Parent = object
+		hightlight.FillColor = primcolor
+		hightlight.FillTransparency = 0.9
+		hightlight.OutlineColor = secocolor
+	end
+
+	while t do
+		if t == true then
+			for i,z in game.Workspace.Enemies:GetChildren() do
+				if z:FindFirstChildOfClass("Highlight") ~= nil then return end
+				highlight(z, Color3.fromRGB(255, 78, 78), Color3.fromRGB(255, 78, 78))
+			end
+		elseif t == false then
+			for i,z in game.Workspace.Enemies:GetChildren() do
+				if z:FindFirstChildOfClass("Highlight") == nil then return end
+				z:FindFirstChildOfClass("Highlight"):Destroy()
+			end
+		end
+	end
+end)
+
+tab3:Button("Rejoin", function()
+	game:GetService("TeleportService"):Teleport(game.PlaceId)
+end)
+
+tab3:Button("Server Hop", function()
+	local x = {}
+	for _, v in ipairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")).data) do
+		if type(v) == "table" and v.maxPlayers > v.playing and v.id ~= game.JobId then
+			x[#x + 1] = v.id
+		end
+	end
+	if #x > 0 then
+		game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, x[math.random(1, #x)])
+	end
+end)
+
+tab3:Button("Destroy UI", function()
+	game:GetService("CoreGui").ui:Destroy()
+	lib:Notification("Project Clipz", "UI Destroyed, rexecute the loader to get it back.", "Noted")
+end)
+
+tab3:Colorpicker("Change UI Color",Color3.fromRGB(44, 120, 224), function(t)
+	lib:ChangePresetColor(Color3.fromRGB(t.R * 255, t.G * 255, t.B * 255))
+end)
+
+lib:Notification("Project Clipz", "Thank you for using Project Clipz! [Support: [https://dsc.gg/projectc]", "Noted")
