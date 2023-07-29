@@ -17,4 +17,7 @@ warn("[Project Clipz]: Loaded Sucessfully")
 warn("[Project Clipz]: The following are available games for this hub: ")
 for i,v in games do
   warn(v[3])
+if v[1] ~= game.PlaceId then
+warn("You suck the gaem isnat supported")
+    end
 end
