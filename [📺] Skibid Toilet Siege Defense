@@ -8,7 +8,6 @@ local tab = win:Tab("Main")
 local tab2 = win:Tab("Player")
 local tab3 = win:Tab("Misc")
 
-
 --[[tab:Button("Button", function()
 	lib:Notification("Notification", "Hello!", "Hi!")
 end)]]
